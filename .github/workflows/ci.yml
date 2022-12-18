@@ -35,5 +35,17 @@ jobs:
             docker build -t spring-cicd:0.0.1 .
             docker tag dotto-cicd:0.0.1 yjh920127/dotto:${GITHUB_SHA::7}
             docker push yjh920127/dotto:${GITHUB_SHA::7}
+      - name: Deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ec2-3-39-107-150.ap-northeast-2.compute.amazonaws.com
+          username: ubuntu
+          key: ${{ secrets.PRIVATE_KEY }}
+          envs: GITHUB_SHA
+          script: |
+            docker pull yjh920127/dotto:${GITHUB_SHA::7}
+            docker tag yjh920127/dotto:${GITHUB_SHA::7} dotto
+            docker stop server
+            docker run -d --rm --name server -p 80:8080 dotto
 
 
