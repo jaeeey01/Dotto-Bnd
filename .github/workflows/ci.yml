@@ -9,7 +9,7 @@ name: dotto CI with gradle
 
 on:
   push:
-    branches: [origin/back-end/master]
+    branches: [back-end/master]
 
 jobs:
   build:
