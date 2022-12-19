@@ -10,6 +10,7 @@ import { useAuthContext } from '@/stores/AuthProvieder'
 import { useMutation } from 'react-query'
 import { ERROR_MESSAGE } from '@/interfaces/common/EMessageType'
 import { KakaoLogin } from '@/components/utils/kakao-api/KakaoLogin'
+import { GoogleLogin } from '@/components/utils/google-api/GoogleLogin'
 
 interface ILogin {
   id: string
@@ -173,19 +174,7 @@ export const Login = (props: LOGIN.PROP) => {
 
         <article className="social-login__button--group pt-24">
           <KakaoLogin />
-
-          <section className="login__items--wrapper mt-12">
-            <button type="button" className="google__button">
-              <img
-                alt="구글 로그인 이미지"
-                src={GOOGLE}
-                className={'ml-20'}
-                width={24}
-                height={24}
-              />
-              <span>구글 계정으로 로그인</span>
-            </button>
-          </section>
+          <GoogleLogin />
         </article>
       </article>
 
