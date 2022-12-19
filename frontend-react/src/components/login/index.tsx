@@ -1,7 +1,7 @@
 import './index.scss'
 import style from '@/assets/styles/common/button.module.scss'
 import LOGO from '@/assets/icons/logo/dotto.svg'
-import { GOOGLE, LINE } from '@/assets/icons/social'
+import { LINE } from '@/assets/icons/social'
 import React, { useEffect, useState } from 'react'
 import { ins as axios } from '@/lib/axios'
 import { useCookies } from 'react-cookie'
@@ -10,7 +10,7 @@ import { useAuthContext } from '@/stores/AuthProvieder'
 import { useMutation } from 'react-query'
 import { ERROR_MESSAGE } from '@/interfaces/common/EMessageType'
 import { KakaoLogin } from '@/components/utils/kakao-api/KakaoLogin'
-import { GoogleLogin } from '@/components/utils/google-api/GoogleLogin'
+import { GoogleLoginButton } from '@/components/utils/google-api/GoogleLogin'
 
 interface ILogin {
   id: string
@@ -174,7 +174,7 @@ export const Login = (props: LOGIN.PROP) => {
 
         <article className="social-login__button--group pt-24">
           <KakaoLogin />
-          <GoogleLogin />
+          <GoogleLoginButton />
         </article>
       </article>
 
