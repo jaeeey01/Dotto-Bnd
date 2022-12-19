@@ -1,7 +1,7 @@
 import './index.scss'
 import style from '@/assets/styles/common/button.module.scss'
 import LOGO from '@/assets/icons/logo/dotto.svg'
-import { KAKAO, GOOGLE, LINE } from '@/assets/icons/social'
+import { GOOGLE, LINE } from '@/assets/icons/social'
 import React, { useEffect, useState } from 'react'
 import { ins as axios } from '@/lib/axios'
 import { useCookies } from 'react-cookie'
@@ -9,6 +9,7 @@ import { LOGIN } from '@/interfaces/login'
 import { useAuthContext } from '@/stores/AuthProvieder'
 import { useMutation } from 'react-query'
 import { ERROR_MESSAGE } from '@/interfaces/common/EMessageType'
+import { KakaoLogin } from '@/components/utils/kakao-api/KakaoLogin'
 
 interface ILogin {
   id: string
@@ -171,18 +172,7 @@ export const Login = (props: LOGIN.PROP) => {
         <img className="social-login--line" src={LINE} alt="간편로그인 /" />
 
         <article className="social-login__button--group pt-24">
-          <section className="login__items--wrapper">
-            <button type="button" className="kakao__button">
-              <img
-                alt="카카오 로그인 이미지"
-                className={'ml-20'}
-                src={KAKAO}
-                width={24}
-                height={24}
-              />
-              <span>카카오 계정으로 로그인</span>
-            </button>
-          </section>
+          <KakaoLogin />
 
           <section className="login__items--wrapper mt-12">
             <button type="button" className="google__button">
