@@ -21,6 +21,11 @@ export const Status = (props: any) => {
 
   const closeModal = (payload: boolean) => {
     setOpen(payload)
+    modalRest()
+  }
+
+  const modalRest = () => {
+    setComponentType('login')
   }
 
   const logout = () => {
@@ -62,6 +67,7 @@ export const Status = (props: any) => {
           componentType === 'login' ? style.loginForm : style.registerForm
         }
         isOpen={open}
+        onRequestClose={() => closeModal(false)}
       >
         {componentType === 'login' ? (
           <Login closeModal={closeModal} changeComponent={components} />
