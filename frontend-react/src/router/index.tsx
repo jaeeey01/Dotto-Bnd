@@ -10,6 +10,7 @@ import BoardPost from '@/pages/BoardPost'
 import BoardPostDetail from '@/pages/BoardPostDetail'
 import BoardWrite from '@/pages/BoardWrite'
 import { KakaoLoginSuccess } from '@/components/utils/kakao-api/KakaoLoginSuccess'
+import { SearchResults } from '@/pages/search/SearchResults'
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -28,10 +29,13 @@ export const router = createBrowserRouter(
             <Route index />
             <Route path="post" />
           </Route>
-        </Route>
 
-        <Route path="estimate/:postNo" />
-        <Route path="search/result/:keyword" />
+          <Route path="search/result/:keyword">
+            <Route index element={<SearchResults />} />
+          </Route>
+
+          <Route path="estimate/:postNo" />
+        </Route>
         <Route path="my" />
         <Route path="401" />
         <Route path="*" />
