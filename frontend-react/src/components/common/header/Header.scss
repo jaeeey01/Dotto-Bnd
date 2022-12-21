@@ -45,7 +45,7 @@
 
       .search-bar {
         width: 100%;
-        max-width: 588px;
+        max-width: 296px;
         height: 40px;
         border: 1px solid $system_gray05;
         outline: none;
@@ -53,6 +53,14 @@
         padding-left: 10px;
         padding-right: 10px;
         font-size: 18px;
+      }
+
+      .search-bar--active {
+        max-width: 588px;
+      }
+
+      .no-keyword--text {
+        text-align: center;
       }
     }
     /*
@@ -68,7 +76,7 @@
       z-index: 999;
 
       .list-group {
-        padding-top: 20px;
+        padding-top: 40px;
         background: $system_white;
         min-height: 300px;
       }
@@ -80,7 +88,7 @@
 
       &--list {
         margin: auto;
-        max-width: 500px;
+        max-width: 610px;
 
         section {
           text-align: center;
