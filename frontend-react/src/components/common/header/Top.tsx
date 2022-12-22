@@ -19,16 +19,25 @@ export const Top = () => {
   const [keywordList, setKeywordList] = useState<Array<string>>([])
   const navigate = useNavigate()
   const ele = useRef<any>(null)
+  const date = new Date()
+  const expires1Month = new Date(date.getMonth() + 1)
 
   useEffect(() => {
     getKeywordList()
-  }, [])
+  }, [keyword])
 
   const getKeywordList = () => {
-    const getKeywordLists = cookies['keyword']
-    if (getKeywordLists !== undefined) {
-      const keywordLists = getKeywordLists.split(',')
-      setKeywordList([...keywordLists])
+    try {
+      const getKeywordLists = cookies['keyword']
+      if (getKeywordLists !== undefined && getKeywordLists !== null) {
+        let keywordLists: string[] = []
+        if (typeof getKeywordLists === 'string')
+          keywordLists = getKeywordLists.split(',')
+        else keywordLists = getKeywordLists
+        setKeywordList([...keywordLists])
+      }
+    } catch (e) {
+      console.log(e)
     }
   }
 
@@ -51,7 +60,7 @@ export const Top = () => {
   }
 
   const setCookies = (keyword: string[]) => {
-    setCookie('keyword', `${keyword}`)
+    setCookie('keyword', `${keyword}`, { path: '/', expires: expires1Month })
   }
 
   const search = (e: React.FormEvent) => {
@@ -62,7 +71,7 @@ export const Top = () => {
       else setKeywordList([...keywordList, keyword])
       setCookies(keywordList)
     }
-    navigate(`/search/result/${keyword}`)
+    navigate(`/dotto/search/result/${keyword}`)
     setShowSearch(!showSearch)
   }
 

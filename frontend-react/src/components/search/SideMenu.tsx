@@ -9,7 +9,6 @@ export const SideMenu = () => {
   const [category, setCategory] = useState(location.pathname)
 
   useEffect(() => {
-    console.log(location)
     setCategory(location.pathname)
   }, [location])
 
@@ -24,7 +23,7 @@ export const SideMenu = () => {
               fontWeight={'all' === 'all' ? 'medium' : 'regular'}
             >
               통합
-              <div className={'circle ml-2'} />
+              <span className={'circle ml-2'} />
             </Typography>
           </Link>
         </li>
@@ -32,7 +31,7 @@ export const SideMenu = () => {
           <Link to={'/'}>
             <Typography className={'flex'} fontColor={'gray3'}>
               닷투
-              {category === '1' ? <div className={'circle ml-2'} /> : null}
+              {category === '1' && <span className={'circle ml-2'} />}
             </Typography>
           </Link>
         </li>
@@ -40,7 +39,7 @@ export const SideMenu = () => {
           <Link to={'/'}>
             <Typography className={'flex'} fontColor={'gray3'}>
               닷찾사
-              {category === '1' ? <div className={'circle ml-2'} /> : null}
+              {category === '1' && <span className={'circle ml-2'} />}
             </Typography>
           </Link>
         </li>
@@ -48,7 +47,7 @@ export const SideMenu = () => {
           <Link to={'/'}>
             <Typography className={'flex'} fontColor={'gray3'}>
               아티스트
-              {category === '1' ? <div className={'circle ml-2'} /> : null}
+              {category === '1' && <span className={'circle ml-2'} />}
             </Typography>
           </Link>
         </li>
@@ -56,7 +55,7 @@ export const SideMenu = () => {
           <Link to={'/'}>
             <Typography className={'flex'} fontColor={'gray3'}>
               회원
-              {category === '1' ? <div className={'circle ml-2'} /> : null}
+              {category === '1' && <div className={'circle ml-2'} />}
             </Typography>
           </Link>
         </li>
