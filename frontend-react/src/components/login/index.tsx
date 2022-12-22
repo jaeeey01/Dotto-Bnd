@@ -37,7 +37,7 @@ export const Login = (props: LOGIN.PROP) => {
 
   useEffect(() => {
     getCookie()
-  })
+  }, [])
 
   const getCookie = () => {
     const getId = cookies['id']

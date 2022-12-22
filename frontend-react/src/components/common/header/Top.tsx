@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import LOGO from '@/assets/icons/logo/dotto.svg'
 import SEARCH from '@/assets/icons/nav/search.svg'
 import CLOSE from '@/assets/icons/nav/x-button.svg'
 import { Link } from 'react-router-dom'
 import Typography from '@/components/common/typography/Typography'
 import cn from 'classnames'
+import { useCookies } from 'react-cookie'
 
 export namespace IEvent {
   export type handleClick = React.MouseEvent<HTMLElement>
@@ -12,19 +13,62 @@ export namespace IEvent {
 }
 
 export const Top = () => {
+  const [cookies, setCookie, removeCookie] = useCookies(['keyword'])
   const [showSearch, setShowSearch] = useState(false)
   const [keyword, setKeyword] = useState('')
-  const [testArr, setTestArr] = useState([])
+  const [keywordList, setKeywordList] = useState<Array<string>>([])
+
+  const ele = useRef<any>(null)
+
+  useEffect(() => {
+    getKeywordList()
+  }, [])
+
+  const getKeywordList = () => {
+    const getKeywordLists = cookies['keyword']
+    if (getKeywordLists !== undefined) {
+      const keywordLists = getKeywordLists.split(',')
+      setKeywordList([...keywordLists])
+    }
+  }
+
   const onChangeKeyword = (e: { target: HTMLInputElement }) => {
     const { value } = e.target
     setKeyword(value)
   }
 
-  const handleClickSearchBar = (e: IEvent.handleClick) => {
+  const handleClickSearchBar = () => {
+    if (!showSearch) setShowSearch(!showSearch)
+  }
+  const searchBarClose = () => {
     setShowSearch(!showSearch)
   }
-  // 검색 추가
-  const search = () => {}
+  const searchBarCloseOuter = (e: React.MouseEvent) => {
+    const { target } = e
+    if (ele && !ele.current.contains(target)) {
+      if (showSearch) searchBarClose()
+    }
+  }
+
+  const setCookies = (keyword: string[]) => {
+    setCookie('keyword', `${keyword}`)
+  }
+
+  const search = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (keyword.length > 0) {
+      if (keywordList.length >= 6)
+        setKeywordList([...keywordList.slice(1), keyword])
+      else setKeywordList([...keywordList, keyword])
+      setCookies(keywordList)
+    }
+    setKeyword('')
+  }
+
+  const keywordClear = () => {
+    removeCookie('keyword')
+    setKeywordList([])
+  }
 
   return (
     <article className="top-container">
@@ -48,17 +92,40 @@ export const Top = () => {
         <button type="submit" className="search__button" onClick={search}>
           <img alt="검색 버튼" src={SEARCH} width={20} height={20} />
         </button>
-        {showSearch ? (
-          <article className="keyword-container">
-            <article className={'list-group'}>
+        {showSearch && (
+          <article className="keyword-container" onClick={searchBarCloseOuter}>
+            <article className={'list-group'} ref={ele}>
               <section className="keyword-container--list">
-                {testArr.length > 0 ? (
+                {keywordList.length > 0 ? (
                   <section>
-                    <Typography>최근 검색어</Typography>
-                    <button type={'button'}>모두지우기</button>
-                    <ul>
-                      <li>TEST 2022.11.26</li>
-                      <li>TEST2 2022.11.26</li>
+                    <div className={'flex justify-between'}>
+                      <Typography
+                        variant={'body1'}
+                        fontColor={'gray4'}
+                        fontWeight={'medium'}
+                      >
+                        최근 검색어
+                      </Typography>
+                      <button type={'button'} onClick={keywordClear}>
+                        <Typography
+                          variant={'body1'}
+                          fontColor={'gray4'}
+                          fontWeight={'medium'}
+                        >
+                          모두지우기
+                        </Typography>
+                      </button>
+                    </div>
+                    <ul className={'search-list'}>
+                      {keywordList.map((item, index) => {
+                        return (
+                          <li key={index}>
+                            <Typography variant={'sub2'} fontWeight={'medium'}>
+                              {item}
+                            </Typography>
+                          </li>
+                        )
+                      })}
                     </ul>
                   </section>
                 ) : (
@@ -73,18 +140,14 @@ export const Top = () => {
               </section>
             </article>
           </article>
-        ) : (
-          ''
         )}
       </form>
-      {showSearch ? (
+      {showSearch && (
         <section className="search-bar__button--close">
-          <button type="button" onClick={handleClickSearchBar}>
+          <button type="button" onClick={searchBarClose}>
             <img alt="검색 닫기" src={CLOSE} width={18} height={18} />
           </button>
         </section>
-      ) : (
-        ''
       )}
     </article>
   )
