@@ -29,63 +29,7 @@
     .logo-wrapper {
       text-align: center;
       width: 103px;
-      margin-left: 56px;
-    }
-
-    .search-bar--container {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-
-      .search__button {
-        position: relative;
-        right: 35px;
-        width: 25px;
-      }
-
-      .search-bar {
-        width: 100%;
-        max-width: 588px;
-        height: 40px;
-        border: 1px solid $system_gray05;
-        outline: none;
-        background: $system_gray06;
-        padding-left: 10px;
-        padding-right: 10px;
-        font-size: 18px;
-      }
-    }
-    /*
-      최근 검색한 키워드
-    */
-    .keyword-container {
-      width: 100vw;
-      position: absolute;
-      top: 75px;
-      left: 0;
-      background: rgba(25, 25, 25, 0.5);
-      height: 100vh;
-      z-index: 999;
-
-      .list-group {
-        padding-top: 20px;
-        background: $system_white;
-        min-height: 300px;
-      }
-
-      .button--wrapper {
-        text-align: right;
-        margin-right: 2%;
-      }
-
-      &--list {
-        margin: auto;
-        max-width: 500px;
-
-        section {
-          text-align: center;
-        }
-      }
+      margin-left: 3.3rem;
     }
   }
 
@@ -148,7 +92,4 @@
   .search-bar-container {
     display: none;
   }
-  //.search-bar__button--close {
-  //  display: none;
-  //}
 }

@@ -1,8 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import LOGO from '@/assets/icons/logo/dotto.svg'
 import SEARCH from '@/assets/icons/nav/search.svg'
 import CLOSE from '@/assets/icons/nav/x-button.svg'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import Typography from '@/components/common/typography/Typography'
+import cn from 'classnames'
+import { useCookies } from 'react-cookie'
+import { SearchForm } from '@/components/search/SearchForm'
 
 export namespace IEvent {
   export type handleClick = React.MouseEvent<HTMLElement>
@@ -11,18 +15,21 @@ export namespace IEvent {
 
 export const Top = () => {
   const [showSearch, setShowSearch] = useState(false)
-  const [keyword, setKeyword] = useState('')
+  useEffect(() => {
+    scrollFixed()
+  }, [showSearch])
 
-  const onChangeKeyword = (e: { target: HTMLInputElement }) => {
-    const { value } = e.target
-    setKeyword(value)
+  const closeSearchBar = (payload: boolean) => {
+    setShowSearch(payload)
   }
 
-  const handleClickSearchBar = (e: IEvent.handleClick) => {
-    setShowSearch(!showSearch)
+  const scrollFixed = () => {
+    const body = document.querySelector('body')
+    if (body) {
+      if (showSearch) body.style.overflow = 'hidden'
+      else body.style.overflow = ''
+    }
   }
-  // 검색 추가
-  const search = () => {}
 
   return (
     <article className="top-container">
@@ -32,46 +39,14 @@ export const Top = () => {
         </Link>
       </section>
 
-      <form className="search-bar--container">
-        <input
-          type="text"
-          placeholder="Search"
-          className="search-bar"
-          value={keyword}
-          name="keyword"
-          onClick={handleClickSearchBar}
-          onChange={onChangeKeyword}
-        />
-        <button type="submit" className="search__button" onClick={search}>
-          <img alt="검색 버튼" src={SEARCH} width={20} height={20} />
-        </button>
-        {showSearch ? (
-          <article className="keyword-container">
-            <article className={'list-group'}>
-              <section className={'keyword-container--list'}>
-                <section>
-                  <p>검색된 검색어가 존재하지 않습니다.</p>
-                </section>
-                <h1>최근 검색어</h1>
-                <ul>
-                  <li>TEST 2022.11.26</li>
-                  <li>TEST2 2022.11.26</li>
-                </ul>
-              </section>
-            </article>
-          </article>
-        ) : (
-          ''
-        )}
-      </form>
-      {showSearch ? (
+      <SearchForm showSearch={showSearch} closeSearchBar={closeSearchBar} />
+
+      {showSearch && (
         <section className="search-bar__button--close">
-          <button type="button" onClick={handleClickSearchBar}>
+          <button type="button" onClick={() => closeSearchBar(!showSearch)}>
             <img alt="검색 닫기" src={CLOSE} width={18} height={18} />
           </button>
         </section>
-      ) : (
-        ''
       )}
     </article>
   )

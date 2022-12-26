@@ -36,13 +36,13 @@ export const Register = (props: IRegister.PROPS) => {
   return (
     <article className={'register'}>
       <Tabs currentTab={componentType} />
-      {componentType === 1 ? (
-        <Policy changeComponent={redirectController} />
-      ) : componentType === 2 ? (
+      {componentType === 1 && <Policy changeComponent={redirectController} />}
+      {componentType === 2 && (
         <RegisterForm changeComponent={redirectController} />
-      ) : componentType === 3 ? (
+      )}
+      {componentType === 3 && (
         <RegisterCompleted changeComponent={redirectController} />
-      ) : null}
+      )}
     </article>
   )
 }
