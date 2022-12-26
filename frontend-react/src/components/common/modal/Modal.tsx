@@ -1,4 +1,4 @@
-import { ComponentProps } from 'react'
+import React, { ComponentProps, useRef } from 'react'
 import ReactDOM from 'react-dom'
 import './Modal.scss'
 
@@ -13,10 +13,24 @@ export default function Modal(props: IModal) {
   const { isOpen, onRequestClose, layerStyle, cardStyle } = props
   const el = document.getElementById('modal') as HTMLElement
 
+  const ele = useRef<any>(null)
+
+  const onClickOutside = (e: React.MouseEvent) => {
+    const { target } = e
+
+    if (ele && !ele.current.contains(target)) {
+      if (onRequestClose) onRequestClose()
+    }
+  }
+
   return isOpen
     ? ReactDOM.createPortal(
-        <div className="modal__layer" style={layerStyle}>
-          <div className="modal__card" style={cardStyle}>
+        <div
+          className="modal__layer"
+          onClick={onClickOutside}
+          style={layerStyle}
+        >
+          <div className="modal__card" ref={ele} style={cardStyle}>
             {props.children}
           </div>
         </div>,
