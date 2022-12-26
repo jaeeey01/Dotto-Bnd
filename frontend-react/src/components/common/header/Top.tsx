@@ -15,9 +15,20 @@ export namespace IEvent {
 
 export const Top = () => {
   const [showSearch, setShowSearch] = useState(false)
+  useEffect(() => {
+    scrollFixed()
+  }, [showSearch])
 
   const closeSearchBar = (payload: boolean) => {
     setShowSearch(payload)
+  }
+
+  const scrollFixed = () => {
+    const body = document.querySelector('body')
+    if (body) {
+      if (showSearch) body.style.overflow = 'hidden'
+      else body.style.overflow = ''
+    }
   }
 
   return (

@@ -52,6 +52,7 @@
 .search-bar__background--blur {
   background: rgba(25, 25, 25, 0.5);
   z-index: 999;
+  backdrop-filter: blur(6px);
 }
 
 .search-list--hide {
