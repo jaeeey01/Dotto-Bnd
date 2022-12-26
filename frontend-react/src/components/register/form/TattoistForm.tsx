@@ -1,30 +1,56 @@
-import React, { useState } from 'react'
-import { IRegister } from '@/interfaces/register'
-import { Button } from '@/components/register/button/Button'
+import React, { useEffect, useState } from 'react'
+import { FileUpload, IRegister } from '@/interfaces/register'
 import Upload from '@/assets/icons/common/upload.svg'
+import {
+  IAddressInfo,
+  KakaoAddress,
+} from '@/components/utils/kakao-api/KakaoAddress'
+import cn from 'classnames'
+import Image from '@/components/common/image/Image'
 
 export const TattoistForm = (props: IRegister.OPTIONS) => {
-  const { additionalData } = props
+  const { userAdditionalInformation, validation } = props
   const [additionalInfo, setAdditionalInfo] = useState({
     address: '',
     addressDetail: '',
-    workspaceImg: '',
+    workspaceImg: [],
   })
-  const { address, addressDetail, workspaceImg } = additionalInfo
+  const { address, addressDetail } = additionalInfo
 
-  const style = {
-    button: {
-      width: '120px',
-    } as React.CSSProperties,
-  }
-
-  const sendData = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+  const sendData = ({ target }: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = target
     setAdditionalInfo({
       ...additionalInfo,
       [name]: value,
     })
-    return additionalData(additionalInfo)
+    userAdditionalInformation(additionalInfo)
+  }
+
+  useEffect(() => {
+    addressCheck()
+  }, [additionalInfo])
+
+  const addressCheck = (): void => {
+    const check = address.length > 0 && addressDetail.length > 0
+    validation({ additional: check })
+  }
+
+  const addressInfo = (props: IAddressInfo): void => {
+    const { address, jibunAddress } = props
+    setAdditionalInfo({
+      ...additionalInfo,
+      address: address || jibunAddress,
+    })
+  }
+
+  //TODO
+  // 파일 업로드
+  const upload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const fileArr: Array<FileUpload[]> = []
+    const { target } = e
+    if (target.files) {
+      const files = target.files
+    }
   }
 
   return (
@@ -33,18 +59,14 @@ export const TattoistForm = (props: IRegister.OPTIONS) => {
         <label>작업실 주소</label>
         <div className={'flex-justify-between'}>
           <input
-            onChange={sendData}
-            className={'register__input'}
+            disabled={true}
+            className={cn('register__input')}
             type={'text'}
             placeholder={'주소찾기'}
             value={address}
             name={'address'}
           />
-          <Button
-            label={'주소검색'}
-            className={'primary__button'}
-            buttonStyle={style.button}
-          />
+          <KakaoAddress addressInfo={addressInfo} />
         </div>
       </section>
       <section className={'register-items mt-16'}>
@@ -63,7 +85,7 @@ export const TattoistForm = (props: IRegister.OPTIONS) => {
         <section className="upload-container">
           <div className="upload__button mt-20">
             <label htmlFor="addFile" className={'flex justify-center'}>
-              <img
+              <Image
                 className="upload"
                 src={Upload}
                 alt="upload"
@@ -75,6 +97,7 @@ export const TattoistForm = (props: IRegister.OPTIONS) => {
             <input
               type="file"
               id="addFile"
+              onChange={upload}
               multiple
               accept=".jpg, .jpeg, .png"
             />

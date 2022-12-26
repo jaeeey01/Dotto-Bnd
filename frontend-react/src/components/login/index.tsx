@@ -1,4 +1,5 @@
 import './index.scss'
+import style from '@/assets/styles/common/button.module.scss'
 import LOGO from '@/assets/icons/logo/dotto.svg'
 import { KAKAO, GOOGLE, LINE } from '@/assets/icons/social'
 import React, { useEffect, useState } from 'react'
@@ -35,7 +36,7 @@ export const Login = (props: LOGIN.PROP) => {
   useEffect(() => {
     getCookie()
   })
-  // 아이디 저장하는지 확인
+
   const getCookie = () => {
     const getId = cookies['id']
     if (getId !== undefined) {
@@ -51,24 +52,23 @@ export const Login = (props: LOGIN.PROP) => {
       [name]: value,
     })
   }
-  // 로그인 정보 전역 상태 변수로 저장
+
   const loginApi = async () => {
     const { data } = await axios.post('/sign-in', loginInfo)
     const { success } = data
     return success
   }
-  // react-query
+
   const { mutate } = useMutation(loginApi, {
     onSuccess: (data: LOGIN.STATE) => {
-      saveState(data)
+      setSessionToUserData(data)
       setUserInfo(data)
       setLoggedIn()
       setLoginErrorMsg(ERROR_MESSAGE.BLANK)
       close(false) // modal Close
     },
-    onError: (error) => {
+    onError: () => {
       setLoginErrorMsg(ERROR_MESSAGE.LOGIN_FAIL)
-      console.log(error)
     },
   })
 
@@ -76,8 +76,8 @@ export const Login = (props: LOGIN.PROP) => {
     e.preventDefault()
     mutate()
   }
-  // 로그인 정보 세션에 저장
-  const saveState = (payload: LOGIN.STATE) => {
+
+  const setSessionToUserData = (payload: LOGIN.STATE) => {
     const { accessToken, refreshToken, nickname, roles } = payload
     sessionStorage.setItem('accessToken', accessToken)
     sessionStorage.setItem('refreshToken', refreshToken)
@@ -100,11 +100,11 @@ export const Login = (props: LOGIN.PROP) => {
   }
 
   const modalType = (type: string) => {
-    reset()
+    resetLoginData()
     changeComponent(type)
   }
-  // 로그인 정보 초기화
-  const reset = () => {
+
+  const resetLoginData = () => {
     setLoginInfo({
       ...loginInfo,
     })
@@ -156,7 +156,11 @@ export const Login = (props: LOGIN.PROP) => {
             </div>
           </section>
           <section className="login__items-wrapper mt-24">
-            <button className="black__button" type="submit" onClick={login}>
+            <button
+              className={style.black__button}
+              type="submit"
+              onClick={login}
+            >
               로그인
             </button>
           </section>
