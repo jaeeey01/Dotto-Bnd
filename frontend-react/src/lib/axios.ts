@@ -1,6 +1,5 @@
 import axios, { AxiosInstance } from 'axios'
 
-//const baseURL = window.location.hostname === 'localhost' ? 'http://localhost:3000/api' : 'https://back.ap.ngrok.io/api'
 const baseURL = process.env.NODE_ENV === 'development' ? '/api' : '/api'
 
 const instance: AxiosInstance = axios.create({
@@ -12,7 +11,6 @@ const instance: AxiosInstance = axios.create({
 })
 
 instance.interceptors.request.use((config) => {
-  //const token = localStorage.getItem('accessToken') ?? ''
   const token = window.sessionStorage.getItem('accessToken') ?? ''
   if (token.length) {
     config.headers!.Authorization = `Bearer ${token}`
@@ -36,6 +34,7 @@ instance.interceptors.response.use(
     } else {
       console.log('OTHER ERROR')
     }
+    console.log(response)
     return response
   }
 )
