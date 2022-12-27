@@ -2,7 +2,6 @@
   "name": "frontend-react",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://3.39.107.150",
   "dependencies": {
     "@h6s/calendar": "^1.0.7",
     "@headlessui/react": "^1.7.4",
