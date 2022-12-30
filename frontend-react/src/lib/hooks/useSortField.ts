@@ -1,12 +1,8 @@
 import { useState } from 'react'
 
 export const SORT_FIELD = [
-  { name: 'Wade Cooper' },
-  { name: 'Arlene Mccoy' },
-  { name: 'Devon Webb' },
-  { name: 'Tom Cook' },
-  { name: 'Tanya Fox' },
-  { name: 'Hellen Schmidt' },
+  { name: '최신순', value: 'desc' },
+  { name: '오래된순', value: 'asc' },
 ]
 
 export const useSortField = () => {

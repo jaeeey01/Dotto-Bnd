@@ -2,18 +2,15 @@ import FilterButton from '@/components/board/FilterButton'
 import FollowedArtist from '@/components/board/FollowedArtist'
 import PostList from '@/components/board/PostList'
 import SideFilterMenu from '@/components/board/SideFilterMenu'
-import SortSelector from '@/components/board/SortSelector'
-import { usePostList } from '@/lib/hooks/usePostList'
-import { useSortField } from '@/lib/hooks/useSortField'
+import FetchNext from '@/components/common/fetch-next/FetchNext'
 import { useToggle } from '@/lib/hooks/useToggle'
+import { useInfinitePosts } from '@/services/post/getPost'
 import './BoardPost.scss'
 
 export default function BoardPost() {
   const { value: showsFilterMenu, toggle: toggleFiterMenu } = useToggle(false)
-  const { selected, setSelected } = useSortField()
-  const { postList } = usePostList()
-
-  const resultPostList = postList.filter(() => true).sort()
+  //   const { selected, setSelected } = useSortField()
+  const { data: resultPostList, fetchNextPage } = useInfinitePosts({ size: 12 })
 
   return (
     <main className="main">
@@ -22,12 +19,15 @@ export default function BoardPost() {
         <FollowedArtist />
         <article className="dotto-section__dotto-post-list">
           <div className="filter-wrapper">
-            <SortSelector selected={selected} setSelected={setSelected} />
+            {/* TODO: 정렬 서버측 시간값 없음 */}
+            {/* <SortSelector selected={selected} setSelected={setSelected} /> */}
             <FilterButton onClick={toggleFiterMenu} />
           </div>
           <PostList list={resultPostList} />
+          <FetchNext fetchNext={fetchNextPage} />
         </article>
       </section>
+      <aside />
     </main>
   )
 }

@@ -11,6 +11,7 @@ export default function SortSelector({
   setSelected: React.Dispatch<
     React.SetStateAction<{
       name: string
+      value: string
     }>
   >
 }) {
@@ -29,14 +30,14 @@ export default function SortSelector({
           <DropDownIcon className="select-dropdown" />
         </Listbox.Button>
         <Listbox.Options className="select__options">
-          {SORT_FIELD.map((person, personIdx) => (
+          {SORT_FIELD.map((sort, personIdx) => (
             <Listbox.Option
               key={personIdx}
               className={({ active }) => ''}
-              value={person}
-              onClick={() => setSelected(person)}
+              value={sort}
+              onClick={() => setSelected(sort)}
             >
-              {({ selected }) => <span key={person.name}>{person.name}</span>}
+              {({ selected }) => <span key={sort.name}>{sort.name}</span>}
             </Listbox.Option>
           ))}
         </Listbox.Options>

@@ -2,7 +2,12 @@
 
 .main {
   display: flex;
+  justify-content: center;
   margin-top: 68px;
+
+  & aside {
+    min-width: 296px;
+  }
 
   & hr {
     all: unset;
@@ -101,6 +106,7 @@
   flex-direction: column;
   gap: 128px;
   max-width: 1200px;
+  flex: 1;
 }
 
 .artist-list {

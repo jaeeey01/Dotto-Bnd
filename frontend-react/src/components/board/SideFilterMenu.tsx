@@ -53,5 +53,7 @@ export default function SideFilterMenu({
         </Button>
       </div>
     </aside>
-  ) : null
+  ) : (
+    <aside />
+  )
 }
