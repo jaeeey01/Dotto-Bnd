@@ -2,18 +2,13 @@ import '@/pages/search/SearchResults.scss'
 import { SideMenu } from '@/components/search/SideMenu'
 import { useParams } from 'react-router'
 import { useEffect, useState } from 'react'
-import PostList from '@/components/board/PostList'
-import { usePostList } from '@/lib/hooks/usePostList'
 import { BoardLabel } from '@/components/board/BoardLabel'
-import Typography from '@/components/common/typography/Typography'
 import { UserPreview } from '@/components/user/UserPreview'
+import PostList from '@/components/board/PostList'
 
 export const SearchResults = () => {
   const [keyword, setKeyword] = useState('')
   const params = useParams()
-
-  const { postList } = usePostList()
-  const resultPostList = postList.filter(() => true).sort()
 
   useEffect(() => {
     const { keyword: param } = params
@@ -36,7 +31,7 @@ export const SearchResults = () => {
             subTitle={'타투이스트가 올린 다양한 작품 중 내 취향을 찾아보세요!'}
             type={'dotto'}
           />
-          <PostList list={resultPostList} />
+          <PostList list={undefined} />
         </section>
         <section className={'search-result__body--group'}>
           <BoardLabel
@@ -46,7 +41,7 @@ export const SearchResults = () => {
             }
             type={'etc'}
           />
-          <PostList list={resultPostList} />
+          <PostList list={undefined} />
         </section>
       </div>
     </main>
