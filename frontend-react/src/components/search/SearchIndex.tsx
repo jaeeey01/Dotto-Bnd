@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import { ins as axios } from '@/lib/axios'
 import { useLocation } from 'react-router'
 import qs from 'qs'
+import { LABEL } from '@/constants/placeholders'
 
 export const SearchIndex = () => {
   const location = useLocation()
@@ -16,10 +17,9 @@ export const SearchIndex = () => {
 
   useEffect(() => {
     const { keyword: queryKeyword } = query
-    if (queryKeyword) setKeyword(queryKeyword.toString())
+    if (queryKeyword) setKeyword(queryKeyword as string)
 
     const load = async () => {
-      console.log(keyword)
       const { data } = await axios.get(`/search/${keyword}`)
       console.log(data)
     }
@@ -30,25 +30,23 @@ export const SearchIndex = () => {
     <>
       <div className={'search-result__body'}>
         <section className={'search-result__body--group '}>
-          <UserPreview type={'artist'} label={'아티스트'} />
+          <UserPreview type={'artist'} label={LABEL.ARTIST} />
         </section>
         <section className={'search-result__body--group'}>
-          <UserPreview type={'user'} label={'회원'} />
+          <UserPreview type={'user'} label={LABEL.USER} />
         </section>
         <section className={'search-result__body--group'}>
           <BoardLabel
-            title={'닷투 게시판'}
-            subTitle={'타투이스트가 올린 다양한 작품 중 내 취향을 찾아보세요!'}
+            title={LABEL.DOTTO_TITLE}
+            subTitle={LABEL.DOTTO_SUB_TITLE}
             type={'dotto'}
           />
           <PostList list={resultPostList} />
         </section>
         <section className={'search-result__body--group'}>
           <BoardLabel
-            title={'닷찾사 게시판'}
-            subTitle={
-              '내가 원하는 도안을 제시하고 타투이스트에게 답변을 받아보세요!'
-            }
+            title={LABEL.BOARD_TITLE}
+            subTitle={LABEL.BOARD_SUB_TITLE}
             type={'etc'}
           />
           <PostList list={resultPostList} />

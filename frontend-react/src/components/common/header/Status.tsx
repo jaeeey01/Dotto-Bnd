@@ -2,9 +2,9 @@ import Modal from '@/components/common/modal/Modal'
 import React, { useEffect, useState } from 'react'
 import { Login } from '@/components/login'
 import { Register } from '@/components/register'
+import Typography from '@/components/common/typography/Typography'
 
-export const Status = (props: any) => {
-  const { changeComponent } = props
+export const Status = () => {
   const [open, setOpen] = useState(false)
   const [isLogin, setIsLogin] = useState(false)
   const [componentType, setComponentType] = useState('login')
@@ -17,11 +17,19 @@ export const Status = (props: any) => {
 
   const openModal = () => {
     setOpen(true)
+    scrollFixed()
+  }
+
+  const scrollFixed = () => {
+    const body = document.querySelector('body')
+    if (body)
+      !open ? (body.style.overflow = 'hidden') : (body.style.overflow = '')
   }
 
   const closeModal = (payload: boolean) => {
     setOpen(payload)
     modalRest()
+    scrollFixed()
   }
 
   const modalRest = () => {
@@ -52,13 +60,17 @@ export const Status = (props: any) => {
       {isLogin ? (
         <section className="button--wrapper">
           <button type={'button'} onClick={logout}>
-            Logout
+            <Typography variant={'caption'} fontColor={'gray1'}>
+              Logout
+            </Typography>
           </button>
         </section>
       ) : (
         <section className="button--wrapper">
           <button type={'button'} onClick={openModal}>
-            Login
+            <Typography variant={'caption'} fontColor={'gray1'}>
+              Login
+            </Typography>
           </button>
         </section>
       )}
@@ -69,11 +81,12 @@ export const Status = (props: any) => {
         isOpen={open}
         onRequestClose={() => closeModal(false)}
       >
-        {componentType === 'login' ? (
+        {componentType === 'login' && (
           <Login closeModal={closeModal} changeComponent={components} />
-        ) : componentType === 'register' ? (
+        )}
+        {componentType === 'register' && (
           <Register changeComponent={components} />
-        ) : null}
+        )}
       </Modal>
     </article>
   )

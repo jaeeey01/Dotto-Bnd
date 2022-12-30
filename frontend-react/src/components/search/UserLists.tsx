@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import Image from '@/components/common/image/Image'
 import Typography from '@/components/common/typography/Typography'
+import Button from '@/components/common/button/Button'
+import '@/components/search/UserResults.scss'
 
 export const UserLists = () => {
   const follow = () => {
@@ -34,14 +36,21 @@ export const UserLists = () => {
                   >
                     팔로우 {post?.follow || '1,980'}
                   </Typography>
-                  <button type={'button'} onClick={follow}>
-                    <Typography variant={'body1'} fontWeight={'medium'}>
-                      팔로우
-                    </Typography>
-                  </button>
                 </span>
               </div>
             </Link>
+            <span className="flex-col gap-8">
+              <Button
+                className={'follow__button'}
+                type={'button'}
+                variant={'gray'}
+                onClick={follow}
+              >
+                <Typography variant={'body1'} fontWeight={'medium'}>
+                  팔로우
+                </Typography>
+              </Button>
+            </span>
           </li>
         )
       })}

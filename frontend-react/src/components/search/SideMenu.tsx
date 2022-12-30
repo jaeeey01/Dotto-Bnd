@@ -22,7 +22,7 @@ export const SideMenu = () => {
         <li className={'side-menu--item'}>
           <span onClick={() => onClickNavigate('all')}>
             <Typography
-              className={'flex'}
+              className={'flex side-menu--category'}
               fontColor={category === 'all' ? 'gray1' : 'gray3'}
               fontWeight={category === 'all' ? 'medium' : 'regular'}
             >
@@ -36,7 +36,7 @@ export const SideMenu = () => {
             <Typography
               fontColor={category === 'dotto' ? 'gray1' : 'gray3'}
               fontWeight={category === 'dotto' ? 'medium' : 'regular'}
-              className={'flex'}
+              className={'flex side-menu--category'}
             >
               닷투
               {category === 'dotto' && <span className={'circle ml-2'} />}
@@ -46,7 +46,7 @@ export const SideMenu = () => {
         <li className={'side-menu--item'}>
           <span onClick={() => onClickNavigate('boards')}>
             <Typography
-              className={'flex'}
+              className={'flex side-menu--category'}
               fontColor={category === 'boards' ? 'gray1' : 'gray3'}
               fontWeight={category === 'boards' ? 'medium' : 'regular'}
             >
@@ -58,7 +58,7 @@ export const SideMenu = () => {
         <li className={'side-menu--item'}>
           <span onClick={() => onClickNavigate('artists')}>
             <Typography
-              className={'flex'}
+              className={'flex side-menu--category'}
               fontColor={category === 'artists' ? 'gray1' : 'gray3'}
               fontWeight={category === 'artists' ? 'medium' : 'regular'}
             >
@@ -70,7 +70,7 @@ export const SideMenu = () => {
         <li className={'side-menu--item'}>
           <span onClick={() => onClickNavigate('users')}>
             <Typography
-              className={'flex'}
+              className={'flex side-menu--category'}
               fontColor={category === 'users' ? 'gray1' : 'gray3'}
               fontWeight={category === 'users' ? 'medium' : 'regular'}
             >

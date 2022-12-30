@@ -25,10 +25,8 @@ export const Top = () => {
 
   const scrollFixed = () => {
     const body = document.querySelector('body')
-    if (body) {
-      if (showSearch) body.style.overflow = 'hidden'
-      else body.style.overflow = ''
-    }
+    if (body)
+      showSearch ? (body.style.overflow = 'hidden') : (body.style.overflow = '')
   }
 
   return (
