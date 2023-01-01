@@ -17,6 +17,45 @@
       float: right;
       padding-right: 56px;
     }
+
+    .profile--wrapper {
+      padding-right: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .profile-box {
+      height: 40px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .profile--dropdown {
+      background: white;
+      z-index: 3;
+      position: absolute;
+      width: 184px;
+      height: 240px;
+      right: 30px;
+      border: 1px solid $system_gray05;
+      border-radius: 4px;
+      top: 130px;
+      box-shadow: 0 1px 2px 0 $system_gray02;
+
+      & hr {
+        margin: 0;
+      }
+
+      & ul {
+        padding: 12px 16px;
+      }
+
+      & li {
+        height: 32px;
+      }
+    }
   }
 
   /* 상단 Top 컴포넌트 */
