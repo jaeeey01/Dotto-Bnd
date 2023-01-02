@@ -33,6 +33,18 @@
       justify-content: flex-end;
       align-items: center;
 
+      .notification__button {
+        width: 48px;
+        height: 48px;
+        text-align: center;
+        border-radius: 50%;
+        padding-top: 10px;
+      }
+
+      .border-color {
+        border: 2px solid $system_gray05 !important;
+      }
+
       .notification {
         width: 360px;
         border: 1px solid $system_gray05;
@@ -40,11 +52,27 @@
         min-height: 100px;
         max-height: 440px;
         position: absolute;
-        right: 10%;
+        right: 140px;
         top: 140px;
         background-color: $system_white;
         z-index: 3;
         box-shadow: 0 1px 2px 0 $system_gray02;
+
+        &-alarm {
+          padding-top: 4px;
+          left: 11px;
+          bottom: 37px;
+          color: $system_white;
+          text-align: center;
+          display: inline-block;
+          position: relative;
+          width: 23px;
+          height: 23px;
+          border: 2px solid $system_white;
+          background-color: #FF5831;
+          border-radius: 50%;
+          font-size: 12px;
+        }
 
         & hr {
           margin: 0;
@@ -67,9 +95,6 @@
       }
 
       .mouse-over {
-        height: 28px;
-        width: 28px;
-        border: 1px solid $system_gray05;
         border-radius: 50%;
         background-color: $system_gray05;
       }
