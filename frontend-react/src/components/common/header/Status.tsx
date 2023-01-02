@@ -1,5 +1,5 @@
 import Modal from '@/components/common/modal/Modal'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Login } from '@/components/login'
 import { Register } from '@/components/register'
 import Typography from '@/components/common/typography/Typography'

@@ -2,18 +2,33 @@ import cn from 'classnames'
 import Image from '@/components/common/image/Image'
 import { DESIGN, FAVORITES, RESERVATION, REVIEW } from '@/assets/icons/mymenu'
 import Typography from '@/components/common/typography/Typography'
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { DropIcon } from '@/components/register/icon/DropIcon'
 
 export const DropMenu = () => {
   const [showMenu, setShowMenu] = useState(false)
   const [showCircleBg, setCircleBg] = useState(false)
 
+  const ele = useRef<any>(null)
+
+  useEffect(() => {
+    document.addEventListener('mousedown', onClickHandlerOutside)
+    return () => {
+      document.removeEventListener('mousedown', onClickHandlerOutside)
+    }
+  }, [])
+
+  const onClickHandlerOutside = (e: Event) => {
+    const { target } = e
+    if (ele.current && !ele.current.contains(target)) setShowMenu(false)
+  }
+
   const onClickHandlerDropMenu = () => {
     setShowMenu(!showMenu)
   }
+
   return (
-    <section>
+    <section ref={ele}>
       <button
         type={'button'}
         onClick={onClickHandlerDropMenu}
