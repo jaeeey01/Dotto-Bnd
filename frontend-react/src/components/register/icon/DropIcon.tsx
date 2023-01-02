@@ -1,8 +1,15 @@
-export const DropIcon = () => {
+interface IDropIcon {
+  width: number
+  height: number
+}
+
+export const DropIcon = (props: IDropIcon) => {
+  const { width, height } = props
+
   return (
     <svg
-      width="15"
-      height="9"
+      width={width}
+      height={height}
       viewBox="0 0 15 9"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

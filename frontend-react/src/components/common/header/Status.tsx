@@ -63,7 +63,92 @@ export const Status = () => {
     <article className="nav-status-container">
       {!isLogin ? (
         <section className="profile-box pr-40">
-          <Image alt={'alarm'} src={ALARM} width={30} height={30} />
+          <div>
+            <Image alt={'alarm'} src={ALARM} width={30} height={30} />
+            <div className={'notification scroll scroll-type'}>
+              <ul>
+                <Typography
+                  className={'notification-date'}
+                  fontColor={'gray1'}
+                  variant={'body1'}
+                  fontWeight={'medium'}
+                >
+                  오늘
+                </Typography>
+                <li className={'flex notification-list'}>
+                  <Image alt={'profile'} src={PROFILE} width={38} height={38} />
+                  <div className={'pl-12'}>
+                    <Typography>
+                      <span>User Name</span> 님이 댓글을 남기셨습니다.
+                    </Typography>
+                    <Typography
+                      variant={'caption'}
+                      fontWeight={'medium'}
+                      fontColor={'gray3'}
+                    >
+                      18분 전
+                    </Typography>
+                  </div>
+                </li>
+                <li className={'flex notification-list'}>
+                  <Image alt={'profile'} src={PROFILE} width={38} height={38} />
+                  <div className={'pl-12'}>
+                    <Typography>
+                      <span>User Name</span> 님이 댓글을 남기셨습니다.
+                    </Typography>
+                    <Typography
+                      variant={'caption'}
+                      fontWeight={'medium'}
+                      fontColor={'gray3'}
+                    >
+                      18분 전
+                    </Typography>
+                  </div>
+                </li>
+              </ul>
+              <hr />
+              <ul>
+                <Typography
+                  className={'notification-date'}
+                  fontColor={'gray1'}
+                  variant={'body1'}
+                  fontWeight={'medium'}
+                >
+                  이번주
+                </Typography>
+                <li className={'flex notification-list'}>
+                  <Image alt={'profile'} src={PROFILE} width={38} height={38} />
+                  <div className={'pl-12'}>
+                    <Typography>
+                      <span>User Name</span> 님이 댓글을 남기셨습니다.
+                    </Typography>
+                    <Typography
+                      variant={'caption'}
+                      fontWeight={'medium'}
+                      fontColor={'gray3'}
+                    >
+                      18분 전
+                    </Typography>
+                  </div>
+                </li>
+                <li className={'flex notification-list'}>
+                  <Image alt={'profile'} src={PROFILE} width={38} height={38} />
+                  <div className={'pl-12'}>
+                    <Typography>
+                      <span>User Name</span> 님이 댓글을 남기셨습니다.
+                    </Typography>
+                    <Typography
+                      variant={'caption'}
+                      fontWeight={'medium'}
+                      fontColor={'gray3'}
+                    >
+                      18분 전
+                    </Typography>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
           <div className={'flex items-center'}>
             <div className={'profile--wrapper pl-26'}>
               <Image alt={'profile'} src={PROFILE} width={38} height={38} />

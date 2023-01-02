@@ -21,7 +21,7 @@ export const DropMenu = () => {
         onMouseLeave={() => setCircleBg(false)}
         className={cn(showCircleBg ? 'mouse-over' : '', 'dropdown__button')}
       >
-        <DropIcon />
+        <DropIcon width={15} height={9} />
       </button>
       <div
         className={cn(
