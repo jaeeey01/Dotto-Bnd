@@ -6,9 +6,6 @@ import Typography from '@/components/common/typography/Typography'
 import ALARM from '@/assets/icons/default_alarm.svg'
 import PROFILE from '@/assets/icons/default.svg'
 import Image from '@/components/common/image/Image'
-import { DropIcon } from '@/components/register/icon/DropIcon'
-
-import cn from 'classnames'
 import { DropMenu } from '@/components/common/header/DropMenu'
 
 export const Status = () => {

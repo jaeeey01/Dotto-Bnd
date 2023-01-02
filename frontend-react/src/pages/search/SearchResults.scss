@@ -13,9 +13,7 @@
     &--group {
       padding: 20px;
     }
-    section.search-result__body--group:nth-child(1) {
-     padding-top: 144px;
-    }
+
     section.search-result__body--group:nth-child(2) {
       padding-top: 60px;
     }
@@ -24,7 +22,6 @@
     }
     section.search-result__body--group:nth-child(4) {
       padding-top: 204px;
-      padding-bottom: 396px;
     }
   }
 }
