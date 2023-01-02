@@ -21,7 +21,7 @@
     padding-left: 10px;
     padding-right: 10px;
     font-size: 18px;
-    transition: all 0.25s ;
+    transition: all 0.25s;
   }
 
   .search-bar--active {
@@ -53,10 +53,6 @@
   background: rgba(25, 25, 25, 0.5);
   z-index: 999;
   backdrop-filter: blur(6px);
-}
-
-.search-list--hide {
-  display: none;
 }
 
 .keyword-container {

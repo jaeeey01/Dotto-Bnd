@@ -105,7 +105,7 @@ export const SearchForm = (props: ISearchForm) => {
         className={cn(
           showSearch
             ? 'search-bar--in-dropdwon search-bar__background--blur'
-            : 'search-bar--out-dropdown search-list--hide',
+            : 'search-bar--out-dropdown hide',
           'keyword-container'
         )}
         onClick={searchBarCloseOuter}
