@@ -42,7 +42,7 @@ dependencies {
 
     //main DB
     // https://mvnrepository.com/artifact/mysql/mysql-connector-java
-    runtimeOnly group: 'mysql', name: 'mysql-connector-java', version: '8.0.29'
+    runtimeOnly group: 'mysql', name: 'mysql-connector-java', version: '8.0.28'
 
     /*runtimeOnly 'mysql:mysql-connector-java'*/
     annotationProcessor 'org.projectlombok:lombok'
