@@ -13,7 +13,7 @@ export const DropMenu = () => {
     setShowMenu(!showMenu)
   }
   return (
-    <>
+    <section>
       <button
         type={'button'}
         onClick={onClickHandlerDropMenu}
@@ -87,6 +87,6 @@ export const DropMenu = () => {
           </li>
         </ul>
       </div>
-    </>
+    </section>
   )
 }
