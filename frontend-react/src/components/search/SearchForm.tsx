@@ -46,6 +46,7 @@ export const SearchForm = (props: ISearchForm) => {
   }
 
   const handleClickSearchBar = () => {
+    setKeyword('')
     if (!showSearch) closeSearchBar(!showSearch)
   }
 
@@ -71,7 +72,7 @@ export const SearchForm = (props: ISearchForm) => {
       else setKeywordList([...keywordList, keyword])
       setCookies(keywordList)
     }
-    navigate(`/dotto/search/result/${keyword}`)
+    navigate(`/search/result?keyword=${keyword}`)
     closeSearchBar(!showSearch)
   }
 
@@ -79,7 +80,11 @@ export const SearchForm = (props: ISearchForm) => {
     removeCookie('keyword')
     setKeywordList([])
   }
-
+  const selectedKeyword = (keyword: string) => {
+    setKeyword(keyword)
+    navigate(`/search/result?keyword=${keyword}`)
+    closeSearchBar(!showSearch)
+  }
   return (
     <form className="search-bar--container">
       <input
@@ -95,12 +100,12 @@ export const SearchForm = (props: ISearchForm) => {
       <button type="submit" className="search__button" onClick={search}>
         <img alt="검색 버튼" src={SEARCH} width={20} height={20} />
       </button>
-      {/*{showSearch && (*/}
+
       <article
         className={cn(
           showSearch
             ? 'search-bar--in-dropdwon search-bar__background--blur'
-            : 'search-bar--out-dropdown search-list--hide',
+            : 'search-bar--out-dropdown hide',
           'keyword-container'
         )}
         onClick={searchBarCloseOuter}
@@ -131,9 +136,11 @@ export const SearchForm = (props: ISearchForm) => {
                   {keywordList.map((item, index) => {
                     return (
                       <li key={index}>
-                        <Typography variant={'sub2'} fontWeight={'medium'}>
-                          {item}
-                        </Typography>
+                        <span onClick={() => selectedKeyword(item)}>
+                          <Typography variant={'sub2'} fontWeight={'medium'}>
+                            {item}
+                          </Typography>
+                        </span>
                       </li>
                     )
                   })}
@@ -151,7 +158,6 @@ export const SearchForm = (props: ISearchForm) => {
           </section>
         </article>
       </article>
-      {/*)}*/}
     </form>
   )
 }

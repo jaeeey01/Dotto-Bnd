@@ -1,11 +1,22 @@
 import '../../assets/styles/common/card/index.scss'
 import { Banner } from '../banner'
 import './index.scss'
+import { ins } from '@/lib/axios'
+
 export const Dotto = () => {
+  const apiTest = async () => {
+    try {
+      const { data } = await ins.get('/feed')
+      console.log(data)
+    } catch (e) {
+      console.log(e)
+    }
+  }
   return (
     <>
       <Banner />
       <article className="dotto mt-32">
+        <button type={'button'} onClick={apiTest}></button>
         <section className="card-layout mb-32">
           <figure className="card-layout__img"></figure>
           <section className="card-layout__content">

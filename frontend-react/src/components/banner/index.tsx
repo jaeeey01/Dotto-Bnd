@@ -54,7 +54,7 @@ export const Banner = () => {
       <div ref={slideRef} className={'img-group'}>
         {[...new Array(4)].map((img, index) => {
           return (
-            <Link className={'img__anchor'} to={`/`}>
+            <Link className={'img__anchor'} to={`/`} key={index}>
               <Image
                 alt={`banner-${index}`}
                 src={img?.src || 'https://picsum.photos/300/300'}

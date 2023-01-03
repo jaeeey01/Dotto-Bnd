@@ -12,6 +12,9 @@ import BoardWrite from '@/pages/BoardWrite'
 import { KakaoLoginSuccess } from '@/components/utils/kakao-api/KakaoLoginSuccess'
 import { SearchResults } from '@/pages/search/SearchResults'
 import Request from '@/pages/request/Request'
+import { UserResults } from '@/components/search/UserResults'
+import { BoardResults } from '@/components/search/BoardResults'
+import { SearchIndex } from '@/components/search/SearchIndex'
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -30,10 +33,11 @@ export const router = createBrowserRouter(
             <Route index />
             <Route path="post" />
           </Route>
+        </Route>
 
-          <Route path="search/result/:keyword">
-            <Route index element={<SearchResults />} />
-          </Route>
+        <Route path="search" element={<SearchResults />}>
+          <Route index path="result" element={<SearchIndex />} />
+          <Route path="menu" element={<UserResults />} />
         </Route>
 
         <Route path="estimate/:postNo" />

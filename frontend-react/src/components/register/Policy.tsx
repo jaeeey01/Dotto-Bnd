@@ -139,7 +139,7 @@ export const Policy = (props: IRegister.PROPS) => {
             </label>
           </section>
           <button onClick={onClickHandleShowContent} type={'button'}>
-            <DropIcon />
+            <DropIcon width={15} height={9} />
           </button>
         </section>
 
@@ -174,7 +174,7 @@ export const Policy = (props: IRegister.PROPS) => {
             </label>
           </section>
           <button onClick={onClickHandleShowPrivate} type={'button'}>
-            <DropIcon />
+            <DropIcon width={15} height={9} />
           </button>
         </section>
 
