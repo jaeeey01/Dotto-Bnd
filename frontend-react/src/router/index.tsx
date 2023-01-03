@@ -13,7 +13,6 @@ import { KakaoLoginSuccess } from '@/components/utils/kakao-api/KakaoLoginSucces
 import { SearchResults } from '@/pages/search/SearchResults'
 import Request from '@/pages/request/Request'
 import { UserResults } from '@/components/search/UserResults'
-import { BoardResults } from '@/components/search/BoardResults'
 import { SearchIndex } from '@/components/search/SearchIndex'
 
 export const router = createBrowserRouter(

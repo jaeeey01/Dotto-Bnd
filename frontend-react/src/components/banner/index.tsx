@@ -2,7 +2,6 @@ import './index.scss'
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Image from '@/components/common/image/Image'
-import Button from '@/components/common/button/Button'
 
 const TOTAL_SLIDES = 3
 

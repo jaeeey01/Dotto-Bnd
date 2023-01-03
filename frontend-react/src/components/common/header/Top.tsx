@@ -1,11 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import LOGO from '@/assets/icons/logo/dotto.svg'
-import SEARCH from '@/assets/icons/nav/search.svg'
 import CLOSE from '@/assets/icons/nav/x-button.svg'
-import { Link, useNavigate } from 'react-router-dom'
-import Typography from '@/components/common/typography/Typography'
-import cn from 'classnames'
-import { useCookies } from 'react-cookie'
+import { Link } from 'react-router-dom'
 import { SearchForm } from '@/components/search/SearchForm'
 
 export namespace IEvent {
