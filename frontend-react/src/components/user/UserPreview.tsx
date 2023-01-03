@@ -3,6 +3,7 @@ import { useUserPreview } from '@/lib/hooks/useUserPreview'
 import '@/components/user/UserPreview.scss'
 import { useState } from 'react'
 import Image from '@/components/common/image/Image'
+import more from '@/assets/icons/user/more_btn.svg'
 
 interface IUserPreview {
   type: string
@@ -19,8 +20,8 @@ export const UserPreview = (props: IUserPreview) => {
     <>
       <Typography>{label}</Typography>
       <div className={'user-list--group'}>
-        <ul className={'flex'}>
-          {[...new Array(10)].map((item, index) => {
+        <ul className={'profile-lists'}>
+          {[...new Array(9)].map((item, index) => {
             return (
               <li key={index}>
                 <Image
@@ -39,6 +40,22 @@ export const UserPreview = (props: IUserPreview) => {
               </li>
             )
           })}
+          <li>
+            <Image
+              className={'profile-image'}
+              alt={'more'}
+              src={more}
+              width={80}
+              height={80}
+            />
+            <Typography
+              variant={'body2'}
+              fontColor={'gray3'}
+              className={'profile-image__caption pt-16'}
+            >
+              MORE
+            </Typography>
+          </li>
         </ul>
       </div>
     </>

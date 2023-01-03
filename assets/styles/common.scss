@@ -45,6 +45,9 @@ $total: 100;
     gap: $size + px !important;
   }
 }
+.pointer {
+  cursor: pointer;
+}
 
 .flex {
   display: flex;

@@ -1,10 +1,15 @@
 import Modal from '@/components/common/modal/Modal'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Login } from '@/components/login'
 import { Register } from '@/components/register'
+import Typography from '@/components/common/typography/Typography'
+import ALARM from '@/assets/icons/default_alarm.svg'
+import PROFILE from '@/assets/icons/default.svg'
+import Image from '@/components/common/image/Image'
+import { DropMenu } from '@/components/common/header/DropMenu'
+import { Notification } from '@/components/common/header/Notification'
 
-export const Status = (props: any) => {
-  const { changeComponent } = props
+export const Status = () => {
   const [open, setOpen] = useState(false)
   const [isLogin, setIsLogin] = useState(false)
   const [componentType, setComponentType] = useState('login')
@@ -17,11 +22,19 @@ export const Status = (props: any) => {
 
   const openModal = () => {
     setOpen(true)
+    scrollFixed()
+  }
+
+  const scrollFixed = () => {
+    const body = document.querySelector('body')
+    if (body)
+      !open ? (body.style.overflow = 'hidden') : (body.style.overflow = '')
   }
 
   const closeModal = (payload: boolean) => {
     setOpen(payload)
     modalRest()
+    scrollFixed()
   }
 
   const modalRest = () => {
@@ -49,16 +62,29 @@ export const Status = (props: any) => {
 
   return (
     <article className="nav-status-container">
-      {isLogin ? (
-        <section className="button--wrapper">
-          <button type={'button'} onClick={logout}>
-            Logout
-          </button>
+      {!isLogin ? (
+        <section className="profile-box pr-40">
+          <Notification />
+          <section className={'flex items-center'}>
+            <div className={'profile--wrapper pl-26'}>
+              <Image alt={'profile'} src={PROFILE} width={38} height={38} />
+              <Typography
+                className={'pt-8'}
+                variant={'caption'}
+                fontColor={'gray1'}
+              >
+                profile
+              </Typography>
+            </div>
+            <DropMenu />
+          </section>
         </section>
       ) : (
         <section className="button--wrapper">
           <button type={'button'} onClick={openModal}>
-            Login
+            <Typography variant={'caption'} fontColor={'gray1'}>
+              Login
+            </Typography>
           </button>
         </section>
       )}
@@ -69,11 +95,12 @@ export const Status = (props: any) => {
         isOpen={open}
         onRequestClose={() => closeModal(false)}
       >
-        {componentType === 'login' ? (
+        {componentType === 'login' && (
           <Login closeModal={closeModal} changeComponent={components} />
-        ) : componentType === 'register' ? (
+        )}
+        {componentType === 'register' && (
           <Register changeComponent={components} />
-        ) : null}
+        )}
       </Modal>
     </article>
   )

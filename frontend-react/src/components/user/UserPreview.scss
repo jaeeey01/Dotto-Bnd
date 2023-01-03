@@ -1,6 +1,14 @@
 .user-list--group {
   padding: 0 20px;
+
+  .profile-lists {
+    display: grid;
+    grid-template-columns: repeat(10, minmax(0, 1fr));
+    gap: 0;
+  }
+
   .profile-image {
+    aspect-ratio: 1/1;
     width: 70px;
     height: 70px;
     border-radius: 50%;

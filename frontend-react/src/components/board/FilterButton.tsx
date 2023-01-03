@@ -3,7 +3,7 @@ import Typography from '@/components/common/typography/Typography'
 
 export default function FilterButton({ onClick }: { onClick: () => void }) {
   return (
-    <div className="select flex gap-8 px-8 py-4" onClick={onClick}>
+    <div className="select flex gap-8 px-8 py-4 pointer" onClick={onClick}>
       <Typography variant="body1" fontWeight="bold" fontColor="gray1" as="span">
         FILTER
       </Typography>

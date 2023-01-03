@@ -6,7 +6,11 @@ import { AuthProvider } from './stores/AuthProvieder'
 import App from './App'
 import { QueryClient, QueryClientProvider } from 'react-query'
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: { refetchOnMount: false, refetchOnWindowFocus: false },
+  },
+})
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
