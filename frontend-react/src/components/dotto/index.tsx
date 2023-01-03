@@ -2,6 +2,7 @@ import '../../assets/styles/common/card/index.scss'
 import { Banner } from '../banner'
 import './index.scss'
 import { ins } from '@/lib/axios'
+import Button from '@/components/common/button/Button'
 
 export const Dotto = () => {
   const apiTest = async () => {
@@ -16,7 +17,9 @@ export const Dotto = () => {
     <>
       <Banner />
       <article className="dotto mt-32">
-        <button type={'button'} onClick={apiTest}></button>
+        <Button variant={'primary-outline'} type={'button'} onClick={apiTest}>
+          API TEST
+        </Button>
         <section className="card-layout mb-32">
           <figure className="card-layout__img"></figure>
           <section className="card-layout__content">
