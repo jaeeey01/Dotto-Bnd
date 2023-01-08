@@ -14,7 +14,6 @@ import { SearchResults } from '@/pages/search/SearchResults'
 import Request from '@/pages/request/Request'
 import { UserResults } from '@/components/search/UserResults'
 import { SearchIndex } from '@/components/search/SearchIndex'
-import { Test } from '@/components/Test'
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -51,7 +50,6 @@ export const router = createBrowserRouter(
         <Route path=":postNo" element={<Request />} />
       </Route>
       <Route path="/oauth/kakao/redirect" element={<KakaoLoginSuccess />} />
-      <Route path='/.well-known/acme-challenge/KPPagWtoBa8rNj8MzIGoRyXwIcEQv0kNcnvtq7blVkA' element={<Test />} />
     </Route>
   )
 )
