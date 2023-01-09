@@ -36,7 +36,7 @@ export const SearchIndex = () => {
           <BoardLabel
             title={LABEL.DOTTO_TITLE}
             subTitle={LABEL.DOTTO_SUB_TITLE}
-            type={'dotto'}
+            type={'home'}
           />
           <PostList list={undefined} />
         </section>

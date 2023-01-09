@@ -61,7 +61,7 @@ export const Status = () => {
 
   return (
     <article className="nav-status-container">
-      {!isLogin ? (
+      {isLogin ? (
         <section className="profile-box pr-40">
           <Notification />
           <section className={'flex items-center'}>

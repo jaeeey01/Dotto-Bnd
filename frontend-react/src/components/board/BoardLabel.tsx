@@ -20,8 +20,8 @@ export const BoardLabel = (props: IBoardLabel) => {
 
   const redirectBoard = () => {
     switch (type) {
-      case 'dotto':
-        setHref('/dotto/board')
+      case 'home':
+        setHref('/home/board')
         break
       case 'dottoTest':
         setHref('/')

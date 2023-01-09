@@ -40,7 +40,7 @@ export const Bottom = () => {
           <span
             className={
               'nav-title' +
-              (currentPath === '/dotto' || currentPath === '/dotto-board'
+              (currentPath === '/home' || currentPath === '/home-board'
                 ? 'active'
                 : '')
             }
@@ -53,9 +53,9 @@ export const Bottom = () => {
               className={'drop-down-container'}
             >
               <Link
-                to={'/dotto/board'}
+                to={'/home/board'}
                 className={
-                  'nav-title' + (currentPath === '/dotto' ? 'active' : '')
+                  'nav-title' + (currentPath === '/home' ? 'active' : '')
                 }
               >
                 닷투 게시판
@@ -63,7 +63,7 @@ export const Bottom = () => {
               <Link
                 to={'/'}
                 className={
-                  'nav-title' + (currentPath === '/dotto-board' ? 'active' : '')
+                  'nav-title' + (currentPath === '/home-board' ? 'active' : '')
                 }
               >
                 닷찾사 게시판

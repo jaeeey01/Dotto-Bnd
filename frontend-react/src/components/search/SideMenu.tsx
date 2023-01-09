@@ -32,14 +32,14 @@ export const SideMenu = () => {
           </span>
         </li>
         <li className={'side-menu--item'}>
-          <span onClick={() => onClickNavigate('dotto')}>
+          <span onClick={() => onClickNavigate('home')}>
             <Typography
-              fontColor={category === 'dotto' ? 'gray1' : 'gray3'}
-              fontWeight={category === 'dotto' ? 'medium' : 'regular'}
+              fontColor={category === 'home' ? 'gray1' : 'gray3'}
+              fontWeight={category === 'home' ? 'medium' : 'regular'}
               className={'flex side-menu--category'}
             >
               닷투
-              {category === 'dotto' && <span className={'circle ml-2'} />}
+              {category === 'home' && <span className={'circle ml-2'} />}
             </Typography>
           </span>
         </li>

@@ -21,6 +21,7 @@ export const Policy = (props: IRegister.PROPS) => {
   const getPolicyContent = async (): Promise<any> => {
     try {
       const { data: policyData } = await axios.get('/policy')
+      console.log(policyData)
       const { result } = policyData
       const { data } = result as { data: IRegister.Policy }
       return { ...data }
