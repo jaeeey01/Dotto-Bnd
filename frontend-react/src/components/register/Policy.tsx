@@ -15,13 +15,15 @@ export const Policy = (props: IRegister.PROPS) => {
     dottoPolicyContent: '',
     privatePolicyContent: '',
   })
+
+  const [test1, setTest1] = useState('')
+  const [test2, setTest2] = useState('')
   const [checkItems, setCheckItems] = useState<string[]>([])
   const { changeComponent } = props
 
   const getPolicyContent = async (): Promise<any> => {
     try {
       const { data: policyData } = await axios.get('/policy')
-      console.log(policyData)
       const { result } = policyData
       const { data } = result as { data: IRegister.Policy }
       return { ...data }
@@ -34,10 +36,15 @@ export const Policy = (props: IRegister.PROPS) => {
 
   useEffect(() => {
     const { data } = query
-    setPolicyContent({
-      ...policyContent,
-      ...data,
-    })
+    console.log(query)
+    console.log(data)
+    const { dottoPolicyContent, privatePolicyContent } = data
+    setTest1(dottoPolicyContent)
+    setTest2(privatePolicyContent)
+    // setPolicyContent({
+    //   ...policyContent,
+    //   ...data,
+    // })
   }, [])
 
   const onClickHandleShowContent = () => {
@@ -145,9 +152,7 @@ export const Policy = (props: IRegister.PROPS) => {
         </section>
 
         {showPolicyContent1 ? (
-          <section className={'policy-contents--wrapper'}>
-            {policyContent.dottoPolicyContent}
-          </section>
+          <section className={'policy-contents--wrapper'}>{test1}</section>
         ) : (
           ''
         )}
@@ -180,9 +185,7 @@ export const Policy = (props: IRegister.PROPS) => {
         </section>
 
         {showPolicyContent2 ? (
-          <section className={'policy-contents--wrapper'}>
-            {policyContent.privatePolicyContent}
-          </section>
+          <section className={'policy-contents--wrapper'}>{test2}</section>
         ) : (
           ''
         )}
