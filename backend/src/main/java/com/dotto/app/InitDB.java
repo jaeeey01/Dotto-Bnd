@@ -21,13 +21,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.EventListener;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
@@ -48,6 +49,8 @@ public class InitDB {
     private final PolicyRepository policyRepository;
     private final PasswordEncoder passwordEncoder;
     private final FollowRepository followRepository;
+
+    private final ResourceLoader resourceLoader;
 
     @EventListener(ApplicationReadyEvent.class)
     @Transactional
@@ -125,9 +128,10 @@ public class InitDB {
     }
 
     private void initPolicy() throws IOException {
-        String dottoPolicyContent = readFileAsString("policy/dottoPolicyContent.txt");
-        String marketingPolicyContent = readFileAsString("policy/marketingPolicyContent.txt");
-        String privatePolicyContent = readFileAsString("policy/privatePolicyContent.txt");
+
+        String dottoPolicyContent = readFileAsString("/policy/dottoPolicyContent.txt");
+        String marketingPolicyContent = readFileAsString("/policy/marketingPolicyContent.txt");
+        String privatePolicyContent = readFileAsString("/policy/privatePolicyContent.txt");
 
         policyRepository.save(new Policy(dottoPolicyContent, privatePolicyContent, marketingPolicyContent));
 
@@ -155,10 +159,17 @@ public class InitDB {
     }
 
     private String readFileAsString(String fileName) throws IOException {
-        URL resources = getClass().getClassLoader().getResource(fileName);
-        assert resources != null;
-        Path path = new File(resources.getPath()).toPath();
-        return Files.readAllLines(path).toString();
+        String br;
+        ClassPathResource classPathResource = new ClassPathResource("classpath:"+fileName);
+
+        if(!classPathResource.exists()){
+            throw new IllegalArgumentException();
+        }
+
+          br = new BufferedReader(new InputStreamReader(classPathResource.getInputStream())).readLine();
+
+        return br;
+
     }
 
 }
