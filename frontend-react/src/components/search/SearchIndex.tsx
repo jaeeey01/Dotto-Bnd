@@ -2,10 +2,11 @@ import { UserPreview } from '@/components/user/UserPreview'
 import { BoardLabel } from '@/components/board/BoardLabel'
 import PostList from '@/components/board/PostList'
 import { useEffect, useState } from 'react'
-import { ins as axios } from '@/lib/axios'
+import { ins } from '@/lib/axios'
 import { useLocation } from 'react-router'
 import qs from 'qs'
 import { LABEL } from '@/constants/placeholders'
+import axios from 'axios'
 
 export const SearchIndex = () => {
   const location = useLocation()
@@ -25,8 +26,8 @@ export const SearchIndex = () => {
 
   const api = async () => {
     try {
-      const { data } = await axios.get('/policy')
-      console.log(data)
+      const { data } = await axios.get('http://3.39.107.150/api/policy')
+      console.log(data, '???????????????')
     } catch (e) {
       console.log()
     }
