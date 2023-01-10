@@ -23,12 +23,24 @@ export const SearchIndex = () => {
     load()
   }, [location])
 
+  const api = async () => {
+    try {
+      const { data } = await axios.get('/policy')
+      console.log(data)
+    } catch (e) {
+      console.log()
+    }
+  }
+
   return (
     <>
       <div className={'search-result__body'}>
         <section className={'search-result__body--group '}>
           <UserPreview type={'artist'} label={LABEL.ARTIST} />
         </section>
+        <button type={'button'} onClick={api}>
+          API TEST
+        </button>
         <section className={'search-result__body--group'}>
           <UserPreview type={'user'} label={LABEL.USER} />
         </section>
