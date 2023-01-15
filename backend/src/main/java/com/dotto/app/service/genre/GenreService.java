@@ -1,8 +1,10 @@
 package com.dotto.app.service.genre;
 
 import com.dotto.app.dto.genre.GenreCreateRequest;
+import com.dotto.app.dto.genre.GenreUpdateRequest;
 import com.dotto.app.entity.genre.Genre;
 import com.dotto.app.exception.GenreNameExistsException;
+import com.dotto.app.exception.GenreNotFoundException;
 import com.dotto.app.repository.genre.GenreRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,15 @@ public class GenreService {
         genreRepository.save(new Genre(req.getGenreName()));
 
         return true;
+    }
+
+    @Transactional
+    public boolean update(GenreUpdateRequest req){
+
+        Genre genre = genreRepository.findByGenreName(req.getGenreName().trim()).orElseThrow(GenreNotFoundException::new);
+
+        return genreRepository.updateGenreName(req.getGenreName(),req.getUpdateGenreName());
+
     }
     
 

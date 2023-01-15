@@ -1,6 +1,7 @@
 package com.dotto.app.controller.genre;
 
 import com.dotto.app.dto.genre.GenreCreateRequest;
+import com.dotto.app.dto.genre.GenreUpdateRequest;
 import com.dotto.app.dto.response.Response;
 import com.dotto.app.service.genre.GenreService;
 import io.swagger.annotations.Api;
@@ -8,6 +9,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,6 +26,13 @@ public class GenreController {
     public Response create(GenreCreateRequest req){
 
         return Response.success(genreService.create(req));
+    }
+
+    @ApiOperation(value = "장르명 변경", notes = "장르명을 변경한다")
+    @PutMapping("/api/genre")
+    @ResponseStatus(HttpStatus.OK)
+    public Response update(GenreUpdateRequest req){
+        return Response.success(genreService.update(req));
     }
 
 }
