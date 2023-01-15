@@ -2,6 +2,7 @@ package com.dotto.app.service.genre;
 
 import com.dotto.app.dto.genre.GenreCreateRequest;
 import com.dotto.app.dto.genre.GenreUpdateRequest;
+import com.dotto.app.dto.genre.GerneDeleteRequest;
 import com.dotto.app.entity.genre.Genre;
 import com.dotto.app.exception.GenreNameExistsException;
 import com.dotto.app.exception.GenreNotFoundException;
@@ -35,6 +36,17 @@ public class GenreService {
         Genre genre = genreRepository.findByGenreName(req.getGenreName().trim()).orElseThrow(GenreNotFoundException::new);
 
         return genreRepository.updateGenreName(req.getGenreName(),req.getUpdateGenreName());
+
+    }
+
+    @Transactional
+    public boolean delete(GerneDeleteRequest req){
+
+        Genre genre = genreRepository.findByGenreName(req.getDeleteGenreName()).orElseThrow(GenreNotFoundException::new);
+
+        genreRepository.deleteById(genre.getGno());
+
+        return true;
 
     }
     

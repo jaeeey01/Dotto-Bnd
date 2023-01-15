@@ -2,16 +2,14 @@ package com.dotto.app.controller.genre;
 
 import com.dotto.app.dto.genre.GenreCreateRequest;
 import com.dotto.app.dto.genre.GenreUpdateRequest;
+import com.dotto.app.dto.genre.GerneDeleteRequest;
 import com.dotto.app.dto.response.Response;
 import com.dotto.app.service.genre.GenreService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Api(value = "Genre Controller", tags = "Genre")
 @RestController
@@ -35,4 +33,10 @@ public class GenreController {
         return Response.success(genreService.update(req));
     }
 
+    @ApiOperation(value = "장르 삭제", notes = "장르를 삭제한다")
+    @DeleteMapping("/api/genre")
+    @ResponseStatus(HttpStatus.OK)
+    public Response delete(GerneDeleteRequest req){
+        return Response.success(genreService.delete(req));
+    }
 }
