@@ -1,5 +1,6 @@
 package com.dotto.app;
 
+import com.dotto.app.entity.genre.Genre;
 import com.dotto.app.entity.member.Follow;
 import com.dotto.app.entity.member.Member;
 import com.dotto.app.entity.member.Role;
@@ -10,6 +11,7 @@ import com.dotto.app.entity.post.Feed;
 import com.dotto.app.entity.post.Image;
 import com.dotto.app.exception.MemberNotFoundException;
 import com.dotto.app.exception.RoleNotFoundException;
+import com.dotto.app.repository.genre.GenreRepository;
 import com.dotto.app.repository.member.FollowRepository;
 import com.dotto.app.repository.member.MemberRepository;
 import com.dotto.app.repository.policy.PolicyRepository;
@@ -22,15 +24,14 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.EventListener;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -52,6 +53,8 @@ public class InitDB {
 
     private final ResourceLoader resourceLoader;
 
+    private final GenreRepository genreRepository;
+
     @EventListener(ApplicationReadyEvent.class)
     @Transactional
     public void initDB() throws IOException {
@@ -61,6 +64,7 @@ public class InitDB {
         initFeed();
         initPolicy();
         initFollow();
+        initGenre();
         log.info("initialize database");
     }
 
@@ -158,8 +162,19 @@ public class InitDB {
 
     }
 
+    private void initGenre(){
+        LongStream.range(1,2).forEach(i -> genreRepository.saveAll(
+                List.of(
+                        new Genre("이레즈미"),
+                        new Genre("올드스쿨"),
+                        new Genre("뉴스쿨")
+                )
+        ));
+    }
+
     private String readFileAsString(String fileName) throws IOException {
         String br;
+        //도커용
         ClassPathResource classPathResource = new ClassPathResource("classpath:"+fileName);
 
         if(!classPathResource.exists()){
@@ -167,6 +182,10 @@ public class InitDB {
         }
 
           br = new BufferedReader(new InputStreamReader(classPathResource.getInputStream())).readLine();
+
+        //로컬용
+//        File resource = ResourceUtils.getFile("classpath:"+fileName.replaceFirst("/",""));
+//        br = new BufferedReader(new FileReader(resource)).readLine();
 
         return br;
 
