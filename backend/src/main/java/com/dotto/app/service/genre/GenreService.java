@@ -1,6 +1,7 @@
 package com.dotto.app.service.genre;
 
 import com.dotto.app.dto.genre.GenreCreateRequest;
+import com.dotto.app.dto.genre.GenreListResponse;
 import com.dotto.app.dto.genre.GenreUpdateRequest;
 import com.dotto.app.dto.genre.GenreDeleteRequest;
 import com.dotto.app.entity.genre.Genre;
@@ -10,6 +11,9 @@ import com.dotto.app.repository.genre.GenreRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -49,6 +53,12 @@ public class GenreService {
         genreRepository.deleteById(genre.getGno());
 
         return true;
+
+    }
+    @Transactional(readOnly = true)
+    public GenreListResponse read(){
+        List<Genre> genreLists = genreRepository.findAll();
+        return new GenreListResponse(genreLists.stream().map(genre -> genre.getGenreName()).collect(Collectors.toList()));
 
     }
     

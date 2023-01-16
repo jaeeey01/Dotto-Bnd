@@ -39,4 +39,11 @@ public class GenreController {
     public Response delete(@RequestBody GenreDeleteRequest req){
         return Response.success(genreService.delete(req));
     }
+
+    @ApiOperation(value = "장르 목록 조회", notes = "장르 목록을 조회한다")
+    @GetMapping("/api/genre")
+    @ResponseStatus(HttpStatus.OK)
+    public Response read(){
+        return Response.success(genreService.read());
+    }
 }
