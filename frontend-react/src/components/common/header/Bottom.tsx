@@ -75,7 +75,7 @@ export const Bottom = () => {
         </li>
         <li>
           <Link
-            to={'/'}
+            to={'/feed'}
             className={'nav-title' + (currentPath === '/feed' ? 'active' : '')}
           >
             Feed

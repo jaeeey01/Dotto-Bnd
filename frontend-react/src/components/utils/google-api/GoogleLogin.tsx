@@ -23,6 +23,7 @@ export const GoogleLoginButton = () => {
     })
   }
 
+  //TODO: OAuth 경로에 Token 만 보내기
   const onSuccess = async (
     response: GoogleLoginResponse | GoogleLoginResponseOffline
   ): Promise<void> => {

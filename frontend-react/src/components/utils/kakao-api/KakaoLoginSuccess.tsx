@@ -8,6 +8,7 @@ export const KakaoLoginSuccess = () => {
   const params = url.searchParams
   const code = params.get('code')
 
+  //TODO: OAuth 경로에 토큰만 보내기
   const oauthApi = async () => {
     const { data } = await axios.get(`/oauth/${code}`)
     return data
