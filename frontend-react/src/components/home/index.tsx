@@ -3,11 +3,11 @@ import { BoardLabel } from '@/components/board/BoardLabel'
 import { LABEL } from '@/constants/placeholders'
 import PostList from '@/components/board/PostList'
 import './index.scss'
-import { ins } from '@/lib/axios'
+import axios from 'axios'
 
 export const Main = () => {
   const apiTest = async () => {
-    const { data } = await ins.get('/policy')
+    const { data } = await axios.get(`http://3.39.107.150/api/follower/${2}`)
     console.log(data)
   }
 
