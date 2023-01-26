@@ -16,6 +16,7 @@ export const Main = () => {
     <>
       <Banner />
       <main className={'main__container'}>
+        tesasdjfasjdfklsadfjlsa;dkfjk;
         <button type={'button'} onClick={apiTest}>
           API TEST
         </button>
@@ -27,7 +28,6 @@ export const Main = () => {
           />
           <PostList list={undefined} />
         </section>
-
         <section>
           <BoardLabel
             title={LABEL.BOARD_TITLE}
