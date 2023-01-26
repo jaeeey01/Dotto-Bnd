@@ -11,10 +11,10 @@ export const Bottom = () => {
     setCurrentPath(location.pathname)
   }, [location])
 
-  const showDropdwonCommunity = () => {
+  const showDropdownCommunity = () => {
     setDropListCommunity(!dropListCommunity)
   }
-  const showDropdwonService = () => {
+  const showDropdownService = () => {
     setDropListService(!dropListService)
   }
   return (
@@ -36,7 +36,7 @@ export const Bottom = () => {
             try DOTTO
           </Link>
         </li>
-        <li onMouseEnter={showDropdwonCommunity}>
+        <li onMouseEnter={showDropdownCommunity}>
           <span
             className={
               'nav-title' +
@@ -49,7 +49,7 @@ export const Bottom = () => {
           </span>
           {dropListCommunity ? (
             <section
-              onMouseLeave={showDropdwonCommunity}
+              onMouseLeave={showDropdownCommunity}
               className={'drop-down-container'}
             >
               <Link
@@ -81,7 +81,7 @@ export const Bottom = () => {
             Feed
           </Link>
         </li>
-        <li onMouseEnter={showDropdwonService}>
+        <li onMouseEnter={showDropdownService}>
           <Link
             to={'/'}
             className={'nav-title' + (currentPath === '/faq' ? 'active' : '')}
@@ -90,7 +90,7 @@ export const Bottom = () => {
           </Link>
           {dropListService ? (
             <section
-              onMouseLeave={showDropdwonService}
+              onMouseLeave={showDropdownService}
               className={'drop-down-container'}
             >
               <Link
