@@ -1,0 +1,23 @@
+.feed__header {
+  width: 100%;
+  padding: 24px 56px;
+
+  .feed__container {
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .feed__nav {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  .feed__sort {
+    display: flex;
+    width: 100%;
+    max-width: fit-content;
+  }
+
+
+}
