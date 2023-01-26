@@ -8,6 +8,7 @@ import { ins } from '@/lib/axios'
 export const Main = () => {
   const apiTest = async () => {
     const { data } = await ins.get('/policy')
+    console.log(data)
   }
 
   return (
