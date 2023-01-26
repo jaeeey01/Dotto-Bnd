@@ -1,43 +1,38 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import Typography from '@/components/common/typography/Typography'
 
 export const Bottom = () => {
   const location = useLocation()
   const [currentPath, setCurrentPath] = useState(location.pathname)
-  const [dropListCommunity, setDropListCommunity] = useState(false)
-  const [dropListService, setDropListService] = useState(false)
 
   useEffect(() => {
     setCurrentPath(location.pathname)
   }, [location])
 
-  const showDropdownCommunity = () => {
-    setDropListCommunity(!dropListCommunity)
-  }
-  const showDropdownService = () => {
-    setDropListService(!dropListService)
-  }
   return (
     <nav className="navigation">
       <ul>
-        <li>
-          <Link
-            to={'/'}
-            className={'nav-title' + (currentPath === '/' ? 'active' : '')}
-          >
-            HOME
+        <li className={'mr-20'}>
+          <Link to={'/'}>
+            <Typography
+              className={'nav-title' + (currentPath === '/' ? 'active' : '')}
+            >
+              HOME
+            </Typography>
           </Link>
         </li>
-        <li>
-          <Link
-            to={'/'}
-            className={'nav-title' + (currentPath === '/try' ? 'active' : '')}
-          >
-            try DOTTO
+        <li className={'mr-20'}>
+          <Link to={'/'}>
+            <Typography
+              className={'nav-title' + (currentPath === '/try' ? 'active' : '')}
+            >
+              try DOTTO
+            </Typography>
           </Link>
         </li>
-        <li onMouseEnter={showDropdownCommunity}>
-          <span
+        <li className={'mr-20'}>
+          <Typography
             className={
               'nav-title' +
               (currentPath === '/home' || currentPath === '/home-board'
@@ -46,73 +41,77 @@ export const Bottom = () => {
             }
           >
             COMMUNITY
-          </span>
-          {dropListCommunity ? (
-            <section
-              onMouseLeave={showDropdownCommunity}
-              className={'drop-down-container'}
-            >
-              <Link
-                to={'/home/board'}
-                className={
-                  'nav-title' + (currentPath === '/home' ? 'active' : '')
-                }
-              >
-                닷투 게시판
-              </Link>
-              <Link
-                to={'/'}
-                className={
-                  'nav-title' + (currentPath === '/home-board' ? 'active' : '')
-                }
-              >
-                닷찾사 게시판
-              </Link>
-            </section>
-          ) : (
-            ''
-          )}
+            <ul className={'dropdown--container'}>
+              <li>
+                <Link to={'/home/board'}>
+                  <Typography
+                    className={
+                      'nav-title' + (currentPath === '/home' ? 'active' : '')
+                    }
+                  >
+                    닷투 게시판
+                  </Typography>
+                </Link>
+              </li>
+              <li>
+                <Link to={'/'}>
+                  <Typography
+                    className={
+                      'nav-title' +
+                      (currentPath === '/home-board' ? 'active' : '')
+                    }
+                  >
+                    닷찾사 게시판
+                  </Typography>
+                </Link>
+              </li>
+            </ul>
+          </Typography>
         </li>
-        <li>
-          <Link
-            to={'/feed'}
-            className={'nav-title' + (currentPath === '/feed' ? 'active' : '')}
-          >
-            Feed
+        <li className={'mr-20'}>
+          <Link to={'/feed'}>
+            <Typography
+              className={
+                'nav-title' + (currentPath === '/feed' ? 'active' : '')
+              }
+            >
+              Feed
+            </Typography>
           </Link>
         </li>
-        <li onMouseEnter={showDropdownService}>
-          <Link
-            to={'/'}
-            className={'nav-title' + (currentPath === '/faq' ? 'active' : '')}
-          >
-            고객지원
-          </Link>
-          {dropListService ? (
-            <section
-              onMouseLeave={showDropdownService}
-              className={'drop-down-container'}
+        <li className={'mr-20'}>
+          <Link to={'/'}>
+            <Typography
+              className={'nav-title' + (currentPath === '/faq' ? 'active' : '')}
             >
-              <Link
-                to={'/'}
-                className={
-                  'nav-title' + (currentPath === '/faq' ? 'active' : '')
-                }
-              >
-                FAQ
-              </Link>
-              <Link
-                to={'/'}
-                className={
-                  'nav-title' + (currentPath === '/notice' ? 'active' : '')
-                }
-              >
-                공지사항
-              </Link>
-            </section>
-          ) : (
-            ''
-          )}
+              고객지원
+              <ul className={'dropdown--container'}>
+                <li>
+                  <Link to={'/'}>
+                    <Typography
+                      className={
+                        'nav-title' + (currentPath === '/faq' ? 'active' : '')
+                      }
+                    >
+                      FAQ
+                    </Typography>
+                  </Link>
+                </li>
+                <li>
+                  <Link to={'/'}>
+                    <Typography
+                      className={
+                        'nav-title' +
+                        (currentPath === '/notice' ? 'active' : '')
+                      }
+                    >
+                      공지사항
+                    </Typography>
+                  </Link>
+                </li>
+              </ul>
+            </Typography>
+          </Link>
         </li>
       </ul>
     </nav>
