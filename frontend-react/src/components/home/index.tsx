@@ -6,7 +6,7 @@ import './index.scss'
 import axios from 'axios'
 
 export const Main = () => {
-  const apiTest = async () => {
+  const apiTest2 = async () => {
     const { data } = await axios.get(`http://3.39.107.150/api/follower/${2}`)
     console.log(data)
     console.log('??????????????????????????????????')
@@ -17,7 +17,7 @@ export const Main = () => {
       <Banner />
       <main className={'main__container'}>
         tesasdjfasjdfklsadfjlsa;dkfjk;
-        <button type={'button'} onClick={apiTest}>
+        <button type={'button'} onClick={apiTest2}>
           API TEST
         </button>
         <section>
