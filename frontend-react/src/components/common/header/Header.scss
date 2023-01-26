@@ -181,9 +181,9 @@
       position: absolute;
       display: flex;
       flex-direction: column;
-      border-radius: 4px;
+      border-radius: 2px;
       border: 1px solid $system_gray05;
-      width: 120px;
+      width: 130px;
     }
   }
 
@@ -204,11 +204,7 @@ nav ul li {
     padding: 4px 10px;
 
     &:hover {
-      background-color: #000000;
-
-      a p {
-        color: $system_white;
-      }
+      background-color: #f6f6f6;
     }
   }
 
