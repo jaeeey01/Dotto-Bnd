@@ -3,4 +3,7 @@
 .feed__main {
   background-color: $system_gray06;
   min-height: 1000px;
+  display: flex;
+  justify-content: center;
+  padding-top: 120px;
 }
