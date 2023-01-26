@@ -3,21 +3,20 @@ import { BoardLabel } from '@/components/board/BoardLabel'
 import { LABEL } from '@/constants/placeholders'
 import PostList from '@/components/board/PostList'
 import './index.scss'
-import axios from 'axios'
+import { ins } from '@/lib/axios'
+//import axios from "axios";
 
 export const Main = () => {
-  const apiTest2 = async () => {
-    const { data } = await axios.get(`http://3.39.107.150/api/follower/${2}`)
+  const apiTest = async () => {
+    const { data } = await ins.get(`/follower/${2}`)
     console.log(data)
-    console.log('??????????????????????????????????')
   }
 
   return (
     <>
       <Banner />
       <main className={'main__container'}>
-        tesasdjfasjdfklsadfjlsa;dkfjk;
-        <button type={'button'} onClick={apiTest2}>
+        <button type={'button'} onClick={apiTest}>
           API TEST
         </button>
         <section>
@@ -28,6 +27,7 @@ export const Main = () => {
           />
           <PostList list={undefined} />
         </section>
+
         <section>
           <BoardLabel
             title={LABEL.BOARD_TITLE}
