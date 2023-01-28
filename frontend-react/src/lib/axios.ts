@@ -1,9 +1,6 @@
 import axios, { AxiosInstance } from 'axios'
 
-const baseURL =
-  process.env.NODE_ENV === 'development'
-    ? 'http://3.39.107.150/api'
-    : 'http://3.39.107.150/api'
+const baseURL = 'http://3.39.107.150/api'
 
 const instance: AxiosInstance = axios.create({
   baseURL,

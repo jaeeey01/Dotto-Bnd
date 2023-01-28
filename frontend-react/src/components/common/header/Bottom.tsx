@@ -16,6 +16,7 @@ export const Bottom = () => {
         <li className={'mr-20'}>
           <Link to={'/'}>
             <Typography
+              variant={'span'}
               className={'nav-title' + (currentPath === '/' ? 'active' : '')}
             >
               HOME
@@ -25,6 +26,7 @@ export const Bottom = () => {
         <li className={'mr-20'}>
           <Link to={'/'}>
             <Typography
+              variant={'span'}
               className={'nav-title' + (currentPath === '/try' ? 'active' : '')}
             >
               try DOTTO
@@ -33,6 +35,7 @@ export const Bottom = () => {
         </li>
         <li className={'mr-20'}>
           <Typography
+            variant={'span'}
             className={
               'nav-title' +
               (currentPath === '/home' || currentPath === '/home-board'
@@ -45,6 +48,7 @@ export const Bottom = () => {
               <li>
                 <Link to={'/home/board'}>
                   <Typography
+                    variant={'span'}
                     className={
                       'nav-title' + (currentPath === '/home' ? 'active' : '')
                     }
@@ -56,6 +60,7 @@ export const Bottom = () => {
               <li>
                 <Link to={'/'}>
                   <Typography
+                    variant={'span'}
                     className={
                       'nav-title' +
                       (currentPath === '/home-board' ? 'active' : '')
@@ -71,6 +76,7 @@ export const Bottom = () => {
         <li className={'mr-20'}>
           <Link to={'/feed'}>
             <Typography
+              variant={'span'}
               className={
                 'nav-title' + (currentPath === '/feed' ? 'active' : '')
               }
@@ -80,38 +86,38 @@ export const Bottom = () => {
           </Link>
         </li>
         <li className={'mr-20'}>
-          <Link to={'/'}>
-            <Typography
-              className={'nav-title' + (currentPath === '/faq' ? 'active' : '')}
-            >
-              고객지원
-              <ul className={'dropdown--container'}>
-                <li>
-                  <Link to={'/'}>
-                    <Typography
-                      className={
-                        'nav-title' + (currentPath === '/faq' ? 'active' : '')
-                      }
-                    >
-                      FAQ
-                    </Typography>
-                  </Link>
-                </li>
-                <li>
-                  <Link to={'/'}>
-                    <Typography
-                      className={
-                        'nav-title' +
-                        (currentPath === '/notice' ? 'active' : '')
-                      }
-                    >
-                      공지사항
-                    </Typography>
-                  </Link>
-                </li>
-              </ul>
-            </Typography>
-          </Link>
+          <Typography
+            variant={'span'}
+            className={'nav-title' + (currentPath === '/faq' ? 'active' : '')}
+          >
+            고객지원
+            <ul className={'dropdown--container'}>
+              <li>
+                <Link to={'/'}>
+                  <Typography
+                    variant={'span'}
+                    className={
+                      'nav-title' + (currentPath === '/faq' ? 'active' : '')
+                    }
+                  >
+                    FAQ
+                  </Typography>
+                </Link>
+              </li>
+              <li>
+                <Link to={'/'}>
+                  <Typography
+                    variant={'span'}
+                    className={
+                      'nav-title' + (currentPath === '/notice' ? 'active' : '')
+                    }
+                  >
+                    공지사항
+                  </Typography>
+                </Link>
+              </li>
+            </ul>
+          </Typography>
         </li>
       </ul>
     </nav>
