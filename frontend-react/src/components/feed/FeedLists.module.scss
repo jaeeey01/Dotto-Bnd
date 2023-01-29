@@ -71,6 +71,13 @@ hr {
         height: 28px;
       }
     }
-
+    .feed__side__menu {
+      position: absolute;
+      border: 1px solid $system_gray05;
+      border-radius: 8px;
+      width: 100px;
+      height: 100px;
+      background-color: $system_white;
+    }
   }
 }

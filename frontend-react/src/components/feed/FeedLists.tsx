@@ -5,6 +5,8 @@ import MENU from '@/assets/icons/myfeed/dotmenu.svg'
 import { Hearts } from '@/components/feed/icons/Hearts'
 import { Comments } from '@/components/feed/icons/Comments'
 import SUBMIT from '@/assets/icons/myfeed/submit.svg'
+import { useState } from 'react'
+import cn from 'classnames'
 
 const mockData = [
   {
@@ -109,6 +111,11 @@ const mockData = [
 ]
 
 export const FeedLists = () => {
+  const [showMenu, setShowMenu] = useState<boolean>(false)
+
+  const onClickHandlerShowMenu = () => {
+    setShowMenu(!showMenu)
+  }
   return (
     <article className={style.feed__container}>
       <ul>
@@ -116,7 +123,7 @@ export const FeedLists = () => {
           return (
             <li key={index} className={style.feed__card}>
               <section className={style.feed__profile}>
-                <div className={'flex'}>
+                <section className={'flex'}>
                   <Image
                     width={40}
                     height={40}
@@ -140,10 +147,27 @@ export const FeedLists = () => {
                       {feed.post.createdAt}
                     </Typography>
                   </div>
-                </div>
-                <button type={'button'}>
-                  <Image src={MENU} alt={`feed menu`} />
-                </button>
+                </section>
+                <section>
+                  <button type={'button'} onClick={onClickHandlerShowMenu}>
+                    <Image src={MENU} alt={`feed menu`} />
+                  </button>
+                  <div
+                    className={cn(
+                      style.feed__side__menu,
+                      showMenu ? 'open' : 'hide'
+                    )}
+                  >
+                    <ul>
+                      <li>
+                        <Typography>수정</Typography>
+                      </li>
+                      <li>
+                        <Typography>삭제</Typography>
+                      </li>
+                    </ul>
+                  </div>
+                </section>
               </section>
               {/* TODO: IMAGE Carousel */}
               <Image
