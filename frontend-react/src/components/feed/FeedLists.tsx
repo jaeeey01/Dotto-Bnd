@@ -7,7 +7,7 @@ import { Comments } from '@/components/feed/icons/Comments'
 import SUBMIT from '@/assets/icons/myfeed/submit.svg'
 import { useState } from 'react'
 import { ToggleMenu } from '@/components/feed/ToggleMenu'
-import { Banner } from '@/components/banner'
+import Slider from 'react-slick'
 
 const mockData = [
   {
@@ -118,6 +118,15 @@ export const FeedLists = () => {
     if (selectedCard > -1) setSelectedCard(-1)
     else setSelectedCard(index)
   }
+
+  var settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  }
+
   return (
     <article className={style.feed__container}>
       <ul>
@@ -160,20 +169,19 @@ export const FeedLists = () => {
                   <ToggleMenu selectedIndex={selectedCard} keyIndex={index} />
                 </section>
               </section>
-              {/* TODO: IMAGE Carousel */}
-              <Banner />
-              {/*<div>*/}
-              {/*  <Image*/}
-              {/*    className={style.feed__thumbnail}*/}
-              {/*    src={'https://picsum.photos/300/300'}*/}
-              {/*    alt={`thumbnail`}*/}
-              {/*  />*/}
-              {/*  <div className={'flex justify-center'}>*/}
-              {/*    <span>1</span>*/}
-              {/*    <span>2</span>*/}
-              {/*    <span>3</span>*/}
-              {/*  </div>*/}
-              {/*</div>*/}
+              <Slider {...settings}>
+                {feed.post.thumbnails.map((img, thumbnail_index) => {
+                  return (
+                    <div key={thumbnail_index}>
+                      <Image
+                        className={style.feed__thumbnail}
+                        src={img.src}
+                        alt={`thumbnail`}
+                      />
+                    </div>
+                  )
+                })}
+              </Slider>
 
               <section className={style.feed__information}>
                 <Hearts count={feed.post.like} className={'mr-24'} />
