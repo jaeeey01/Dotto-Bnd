@@ -28,11 +28,6 @@ export const router = createBrowserRouter(
             <Route path="view/:postNo" element={<BoardPostDetail />} />
             <Route path="write" element={<BoardWrite />} />
           </Route>
-
-          {/*<Route path="feed">*/}
-          {/*  <Route index />*/}
-          {/*  <Route path="post" />*/}
-          {/*</Route>*/}
         </Route>
 
         <Route path="search" element={<SearchResults />}>

@@ -15,12 +15,12 @@ hr {
     max-height: 886px;
     height: 100%;
     border-radius: 8px;
-    margin-bottom: 32px;
+    margin-bottom: 2em;
     box-shadow: 0 0 10px 0 $system_gray05;
 
     .feed__profile {
       padding: 20px 24px;
-      max-height: 80px;
+      max-height: 5em;
       display: flex;
       justify-content: space-between;
 
@@ -71,13 +71,48 @@ hr {
         height: 28px;
       }
     }
-    .feed__side__menu {
+    /* feed toggle menu */
+    .feed__toggle__menu {
       position: absolute;
       border: 1px solid $system_gray05;
-      border-radius: 8px;
-      width: 100px;
-      height: 100px;
+      border-radius: 4px;
+      height: 100%;
+      max-height: 68px;
       background-color: $system_white;
+
+      ul {
+        height: 100%;
+      }
+      li {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+      }
+
+
+
+      .feed__toggle__menu__button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 6px 10px;
+        width: 100%;
+        &:hover {
+          background-color: $system_gray05;
+        }
+      }
+
     }
   }
+}
+
+@media screen and (max-width: 1023px) {
+  .feed__container {
+    margin-right: 0;
+    //max-width: 500px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+
 }

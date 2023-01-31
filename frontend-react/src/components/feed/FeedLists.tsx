@@ -6,7 +6,8 @@ import { Hearts } from '@/components/feed/icons/Hearts'
 import { Comments } from '@/components/feed/icons/Comments'
 import SUBMIT from '@/assets/icons/myfeed/submit.svg'
 import { useState } from 'react'
-import cn from 'classnames'
+import { ToggleMenu } from '@/components/feed/ToggleMenu'
+import { Banner } from '@/components/banner'
 
 const mockData = [
   {
@@ -111,10 +112,11 @@ const mockData = [
 ]
 
 export const FeedLists = () => {
-  const [showMenu, setShowMenu] = useState<boolean>(false)
+  const [selectedCard, setSelectedCard] = useState<number>(-1)
 
-  const onClickHandlerShowMenu = () => {
-    setShowMenu(!showMenu)
+  const onClickHandlerShowMenu = (index: number) => {
+    if (selectedCard > -1) setSelectedCard(-1)
+    else setSelectedCard(index)
   }
   return (
     <article className={style.feed__container}>
@@ -149,32 +151,30 @@ export const FeedLists = () => {
                   </div>
                 </section>
                 <section>
-                  <button type={'button'} onClick={onClickHandlerShowMenu}>
+                  <button
+                    type={'button'}
+                    onClick={() => onClickHandlerShowMenu(index)}
+                  >
                     <Image src={MENU} alt={`feed menu`} />
                   </button>
-                  <div
-                    className={cn(
-                      style.feed__side__menu,
-                      showMenu ? 'open' : 'hide'
-                    )}
-                  >
-                    <ul>
-                      <li>
-                        <Typography>수정</Typography>
-                      </li>
-                      <li>
-                        <Typography>삭제</Typography>
-                      </li>
-                    </ul>
-                  </div>
+                  <ToggleMenu selectedIndex={selectedCard} keyIndex={index} />
                 </section>
               </section>
               {/* TODO: IMAGE Carousel */}
-              <Image
-                className={style.feed__thumbnail}
-                src={'https://picsum.photos/300/300'}
-                alt={`thumbnail`}
-              />
+              <Banner />
+              {/*<div>*/}
+              {/*  <Image*/}
+              {/*    className={style.feed__thumbnail}*/}
+              {/*    src={'https://picsum.photos/300/300'}*/}
+              {/*    alt={`thumbnail`}*/}
+              {/*  />*/}
+              {/*  <div className={'flex justify-center'}>*/}
+              {/*    <span>1</span>*/}
+              {/*    <span>2</span>*/}
+              {/*    <span>3</span>*/}
+              {/*  </div>*/}
+              {/*</div>*/}
+
               <section className={style.feed__information}>
                 <Hearts count={feed.post.like} className={'mr-24'} />
                 <Comments count={feed.post.comment.length} />
