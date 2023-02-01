@@ -3,6 +3,7 @@ import { Footer } from '@/components/common/footer/Footer'
 import { FeedLists } from '@/components/feed/FeedLists'
 import { RecommendedUser } from '@/components/feed/RecommendedUser'
 import style from '@/pages/feed/FeedIndex.module.scss'
+import { TopButton } from '@/components/button/TopButton'
 
 export const FeedIndex = () => {
   return (
@@ -12,6 +13,7 @@ export const FeedIndex = () => {
       <main className={style.feed__main}>
         <FeedLists />
         <RecommendedUser />
+        <TopButton />
       </main>
       <Footer />
     </>
