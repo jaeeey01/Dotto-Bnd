@@ -11,7 +11,6 @@ type Variant =
   | 'body1'
   | 'body2'
   | 'caption'
-  | 'span'
 type FontWeight = 'regular' | 'medium' | 'semibold' | 'bold'
 type FontColor =
   | 'gray1'
@@ -53,7 +52,6 @@ export default function Typography(props: ITypography) {
     body1: 'p',
     body2: 'p',
     caption: 'p',
-    span: 'span',
   }
 
   return React.createElement(

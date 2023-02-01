@@ -46,7 +46,8 @@ export const BoardLabel = (props: IBoardLabel) => {
       <Link to={href}>
         <Typography
           className={'flex'}
-          variant={'span'}
+          as="span"
+          variant={'sub2'}
           fontWeight={'medium'}
           fontColor={'gray1'}
         >

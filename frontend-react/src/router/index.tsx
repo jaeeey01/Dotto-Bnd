@@ -14,7 +14,7 @@ import { SearchResults } from '@/pages/search/SearchResults'
 import Request from '@/pages/request/Request'
 import { UserResults } from '@/components/search/UserResults'
 import { SearchIndex } from '@/components/search/SearchIndex'
-import { FeedIndex } from '@/pages/feed/FeedIndex'
+import { FeedIndex, FeedPost } from '@/pages/feed/index'
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -28,11 +28,6 @@ export const router = createBrowserRouter(
             <Route path="view/:postNo" element={<BoardPostDetail />} />
             <Route path="write" element={<BoardWrite />} />
           </Route>
-
-          {/*<Route path="feed">*/}
-          {/*  <Route index />*/}
-          {/*  <Route path="post" />*/}
-          {/*</Route>*/}
         </Route>
 
         <Route path="search" element={<SearchResults />}>
@@ -46,7 +41,10 @@ export const router = createBrowserRouter(
         <Route path="*" />
       </Route>
 
-      <Route index path="feed" element={<FeedIndex />} />
+      <Route path={'feed'}>
+        <Route index element={<FeedIndex />} />
+        <Route path={'post'} element={<FeedPost />} />
+      </Route>
 
       <Route path="request">
         <Route index element={<Navigate to="/*" />} />

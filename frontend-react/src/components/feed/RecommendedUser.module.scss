@@ -24,3 +24,9 @@
     }
   }
 }
+
+@media screen and (max-width: 1023px) {
+  .recommend__user__container {
+    display: none;
+  }
+}

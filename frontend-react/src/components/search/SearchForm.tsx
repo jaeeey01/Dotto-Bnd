@@ -53,6 +53,7 @@ export const SearchForm = (props: ISearchForm) => {
   const searchBarClose = () => {
     closeSearchBar(!showSearch)
   }
+
   const searchBarCloseOuter = (e: React.MouseEvent) => {
     const { target } = e
     if (ele && !ele.current.contains(target)) {

@@ -5,8 +5,16 @@ import MENU from '@/assets/icons/myfeed/dotmenu.svg'
 import { Hearts } from '@/components/feed/icons/Hearts'
 import { Comments } from '@/components/feed/icons/Comments'
 import SUBMIT from '@/assets/icons/myfeed/submit.svg'
-import { useState } from 'react'
-import cn from 'classnames'
+import React, { useState } from 'react'
+import { ToggleMenu } from '@/components/feed/ToggleMenu'
+import Slider from 'react-slick'
+import '@/components/feed/FeedLists.module.scss'
+
+interface SlideButtonProps {
+  className?: any
+  style?: any
+  onClick?: React.MouseEventHandler<HTMLDivElement>
+}
 
 const mockData = [
   {
@@ -111,11 +119,53 @@ const mockData = [
 ]
 
 export const FeedLists = () => {
-  const [showMenu, setShowMenu] = useState<boolean>(false)
+  const [selectedCard, setSelectedCard] = useState<number>(-1)
 
-  const onClickHandlerShowMenu = () => {
-    setShowMenu(!showMenu)
+  const onClickHandlerShowMenu = (index: number) => {
+    if (selectedCard > -1) setSelectedCard(-1)
+    else setSelectedCard(index)
   }
+
+  function PrevArrow(props: SlideButtonProps) {
+    const { className, style, onClick } = props
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: 'block', left: '10px', zIndex: 999 }}
+        onClick={onClick}
+      />
+    )
+  }
+  function NextArrow(props: SlideButtonProps) {
+    const { className, style, onClick } = props
+    return (
+      <div
+        className={className}
+        style={{
+          ...style,
+          display: 'block',
+          right: '10px',
+          zIndex: 999,
+        }}
+        onClick={onClick}
+      />
+    )
+  }
+
+  const slideSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    prevArrow: <PrevArrow className={style.test_class} />,
+    nextArrow: <NextArrow />,
+    //dotsClass: style.custom_dots,
+    //customPaging: function (i: number) {
+    //  return <button type={'button'} className={style.slick_active} />
+    //},
+  }
+
   return (
     <article className={style.feed__container}>
       <ul>
@@ -149,32 +199,30 @@ export const FeedLists = () => {
                   </div>
                 </section>
                 <section>
-                  <button type={'button'} onClick={onClickHandlerShowMenu}>
+                  <button
+                    type={'button'}
+                    onClick={() => onClickHandlerShowMenu(index)}
+                  >
                     <Image src={MENU} alt={`feed menu`} />
                   </button>
-                  <div
-                    className={cn(
-                      style.feed__side__menu,
-                      showMenu ? 'open' : 'hide'
-                    )}
-                  >
-                    <ul>
-                      <li>
-                        <Typography>수정</Typography>
-                      </li>
-                      <li>
-                        <Typography>삭제</Typography>
-                      </li>
-                    </ul>
-                  </div>
+                  <ToggleMenu selectedIndex={selectedCard} keyIndex={index} />
                 </section>
               </section>
-              {/* TODO: IMAGE Carousel */}
-              <Image
-                className={style.feed__thumbnail}
-                src={'https://picsum.photos/300/300'}
-                alt={`thumbnail`}
-              />
+
+              <Slider {...slideSettings}>
+                {feed.post.thumbnails.map((img, thumbnail_index) => {
+                  return (
+                    <div key={thumbnail_index}>
+                      <Image
+                        className={style.feed__thumbnail}
+                        src={img.src}
+                        alt={`thumbnail`}
+                      />
+                    </div>
+                  )
+                })}
+              </Slider>
+
               <section className={style.feed__information}>
                 <Hearts count={feed.post.like} className={'mr-24'} />
                 <Comments count={feed.post.comment.length} />
