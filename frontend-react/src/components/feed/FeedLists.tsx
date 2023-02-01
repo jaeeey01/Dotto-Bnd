@@ -5,9 +5,16 @@ import MENU from '@/assets/icons/myfeed/dotmenu.svg'
 import { Hearts } from '@/components/feed/icons/Hearts'
 import { Comments } from '@/components/feed/icons/Comments'
 import SUBMIT from '@/assets/icons/myfeed/submit.svg'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { ToggleMenu } from '@/components/feed/ToggleMenu'
 import Slider from 'react-slick'
+import '@/components/feed/FeedLists.module.scss'
+
+interface SlideButtonProps {
+  className?: any
+  style?: any
+  onClick?: React.MouseEventHandler<HTMLDivElement>
+}
 
 const mockData = [
   {
@@ -119,12 +126,44 @@ export const FeedLists = () => {
     else setSelectedCard(index)
   }
 
-  var settings = {
+  function PrevArrow(props: SlideButtonProps) {
+    const { className, style, onClick } = props
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: 'block', left: '10px', zIndex: 999 }}
+        onClick={onClick}
+      />
+    )
+  }
+  function NextArrow(props: SlideButtonProps) {
+    const { className, style, onClick } = props
+    return (
+      <div
+        className={className}
+        style={{
+          ...style,
+          display: 'block',
+          right: '10px',
+          zIndex: 999,
+        }}
+        onClick={onClick}
+      />
+    )
+  }
+
+  const slideSettings = {
     dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    prevArrow: <PrevArrow className={style.test_class} />,
+    nextArrow: <NextArrow />,
+    //dotsClass: style.custom_dots,
+    //customPaging: function (i: number) {
+    //  return <button type={'button'} className={style.slick_active} />
+    //},
   }
 
   return (
@@ -169,7 +208,8 @@ export const FeedLists = () => {
                   <ToggleMenu selectedIndex={selectedCard} keyIndex={index} />
                 </section>
               </section>
-              <Slider {...settings}>
+
+              <Slider {...slideSettings}>
                 {feed.post.thumbnails.map((img, thumbnail_index) => {
                   return (
                     <div key={thumbnail_index}>
