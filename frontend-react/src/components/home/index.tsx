@@ -4,10 +4,10 @@ import { LABEL } from '@/constants/placeholders'
 import PostList from '@/components/board/PostList'
 import './index.scss'
 import { ins } from '@/lib/axios'
+import dummy from '@/assets/dummy/board'
 
 export const Main = () => {
   const apiTest = async () => {
-    console.log('?')
     const { data } = await ins.get(`/follower/${2}`)
     console.log(data)
   }
@@ -25,7 +25,7 @@ export const Main = () => {
             subTitle={LABEL.DOTTO_SUB_TITLE}
             type={'home'}
           />
-          <PostList list={undefined} />
+          <PostList list={dummy} />
         </section>
 
         <section>
@@ -34,7 +34,7 @@ export const Main = () => {
             subTitle={LABEL.BOARD_SUB_TITLE}
             type={'home'}
           />
-          <PostList list={undefined} />
+          <PostList list={dummy} />
         </section>
       </main>
     </>
