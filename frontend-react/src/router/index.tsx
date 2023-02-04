@@ -6,15 +6,16 @@ import {
 } from 'react-router-dom'
 import { Main } from '@/components/home'
 import MainLayout from '@/components/layout/MainLayout'
-import BoardPost from '@/pages/BoardPost'
-import BoardPostDetail from '@/pages/BoardPostDetail'
-import BoardWrite from '@/pages/BoardWrite'
+
 import { KakaoLoginSuccess } from '@/components/utils/kakao-api/KakaoLoginSuccess'
 import { SearchResults } from '@/pages/search/SearchResults'
 import Request from '@/pages/request/Request'
 import { UserResults } from '@/components/search/UserResults'
 import { SearchIndex } from '@/components/search/SearchIndex'
 import { FeedIndex } from '@/pages/feed/FeedIndex'
+import BoardPost from '@/pages/board/BoardPost'
+import BoardPostDetail from '@/pages/board/BoardPostDetail'
+import BoardWrite from '@/pages/board/BoardWrite'
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
