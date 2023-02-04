@@ -16,6 +16,8 @@ import { FeedIndex } from '@/pages/feed/FeedIndex'
 import BoardPost from '@/pages/board/BoardPost'
 import BoardPostDetail from '@/pages/board/BoardPostDetail'
 import BoardWrite from '@/pages/board/BoardWrite'
+import MyPageLayout from '@/components/layout/mypage/MyPageLayout'
+import TransmissionList from '@/pages/mypage/TransmissionList'
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -42,9 +44,19 @@ export const router = createBrowserRouter(
         </Route>
 
         <Route path="estimate/:postNo" />
-        <Route path="my" />
         <Route path="401" />
         <Route path="*" />
+      </Route>
+
+      <Route path="mypage" element={<MyPageLayout />}>
+        <Route index element={<TransmissionList />} />
+        <Route path="transmission-list" element={<TransmissionList />} />
+        <Route path="progress-list" element={<div />} />
+        <Route path="complete-list" element={<div />} />
+        <Route path="cancellation-list" element={<div />} />
+        <Route path="procedure-history" element={<div />} />
+        <Route path="change-password" element={<div />} />
+        <Route path="withdrawl" element={<div />} />
       </Route>
 
       <Route index path="feed" element={<FeedIndex />} />
