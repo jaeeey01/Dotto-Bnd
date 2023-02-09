@@ -7,6 +7,7 @@ import { Button } from '@/components/register/button/Button'
 import { useQuery } from 'react-query'
 import style from '@/assets/styles/common/button.module.scss'
 import cn from 'classnames'
+import dummy from '@/assets/dummy/policy'
 
 export const Policy = (props: IRegister.PROPS) => {
   const [showPolicyContent1, setShowPolicyContent1] = useState(false)
@@ -16,8 +17,6 @@ export const Policy = (props: IRegister.PROPS) => {
     privatePolicyContent: '',
   })
 
-  const [test1, setTest1] = useState('')
-  const [test2, setTest2] = useState('')
   const [checkItems, setCheckItems] = useState<string[]>([])
   const { changeComponent } = props
 
@@ -36,15 +35,10 @@ export const Policy = (props: IRegister.PROPS) => {
 
   useEffect(() => {
     const { data } = query
-    console.log(query)
-    console.log(data)
-    const { dottoPolicyContent, privatePolicyContent } = data
-    setTest1(dottoPolicyContent)
-    setTest2(privatePolicyContent)
-    // setPolicyContent({
-    //   ...policyContent,
-    //   ...data,
-    // })
+    setPolicyContent({
+      ...policyContent,
+      ...dummy,
+    })
   }, [])
 
   const onClickHandleShowContent = () => {
@@ -151,11 +145,11 @@ export const Policy = (props: IRegister.PROPS) => {
           </button>
         </section>
 
-        {showPolicyContent1 ? (
-          <section className={'policy-contents--wrapper'}>{test1}</section>
-        ) : (
-          ''
-        )}
+        <section
+          className={'policy-contents--wrapper'}
+          dangerouslySetInnerHTML={{ __html: policyContent.dottoPolicyContent }}
+        />
+
         <section className={'policy-contents'}>
           <section className={'policy__check-box'}>
             <button
@@ -184,11 +178,12 @@ export const Policy = (props: IRegister.PROPS) => {
           </button>
         </section>
 
-        {showPolicyContent2 ? (
-          <section className={'policy-contents--wrapper'}>{test2}</section>
-        ) : (
-          ''
-        )}
+        <section
+          className={'policy-contents--wrapper'}
+          dangerouslySetInnerHTML={{
+            __html: policyContent.privatePolicyContent,
+          }}
+        />
       </section>
 
       <section className={cn('register__button--container pb-40')}>

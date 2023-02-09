@@ -1,9 +1,8 @@
 import './index.scss'
 import { useEffect, useRef, useState } from 'react'
-// import { Link } from 'react-router-dom'
-// import Image from '@/components/common/image/Image'
+import { Link } from 'react-router-dom'
+import Image from '@/components/common/image/Image'
 import { ins } from '@/lib/axios'
-import Button from '@/components/common/button/Button'
 
 const TOTAL_SLIDES = 3
 
@@ -59,27 +58,23 @@ export const Banner = () => {
       <button type={'button'} onClick={prevSlide} className={'slide--prev'}>
         {'<'}
       </button>
-      <Button variant={'gray-outline'} type={'button'} onClick={api}>
-        TEST
-      </Button>
+      <div ref={slideRef} className={'img-group'}>
+        {[...new Array(4)].map((img, index) => {
+          return (
+            <Link className={'img__anchor'} to={`/`} key={index}>
+              <Image
+                alt={`banner-${index}`}
+                src={img?.src || 'https://picsum.photos/300/300'}
+                className={'img'}
+              />
+            </Link>
+          )
+        })}
+      </div>
 
-      {/*<div ref={slideRef} className={'img-group'}>*/}
-      {/*  {[...new Array(4)].map((img, index) => {*/}
-      {/*    return (*/}
-      {/*      <Link className={'img__anchor'} to={`/`} key={index}>*/}
-      {/*        <Image*/}
-      {/*          alt={`banner-${index}`}*/}
-      {/*          src={img?.src || 'https://picsum.photos/300/300'}*/}
-      {/*          className={'img'}*/}
-      {/*        />*/}
-      {/*      </Link>*/}
-      {/*    )*/}
-      {/*  })}*/}
-      {/*</div>*/}
-
-      {/*<button type={'button'} onClick={nextSlide} className={'slide--next'}>*/}
-      {/*  {'>'}*/}
-      {/*</button>*/}
+      <button type={'button'} onClick={nextSlide} className={'slide--next'}>
+        {'>'}
+      </button>
     </article>
   )
 }

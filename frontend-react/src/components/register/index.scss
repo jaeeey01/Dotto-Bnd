@@ -80,6 +80,8 @@
     }
 
     &-contents--wrapper {
+      padding: 4px;
+      text-align: left;
       overflow-y: auto;
       border-bottom: 1px solid $system_gray05;
       border-left: 1px solid $system_gray05;
