@@ -2,6 +2,7 @@ import './index.scss'
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Image from '@/components/common/image/Image'
+import { ins } from '@/lib/axios'
 
 const TOTAL_SLIDES = 3
 
@@ -35,6 +36,14 @@ export const Banner = () => {
       setCurrentSlide(currentSlide + 1)
     }
   }
+  const api = async () => {
+    try {
+      const { data } = await ins.get('/follower/2')
+      console.log(data)
+    } catch (e) {
+      console.log(e)
+    }
+  }
 
   const prevSlide = () => {
     if (currentSlide === 0) {
@@ -49,7 +58,6 @@ export const Banner = () => {
       <button type={'button'} onClick={prevSlide} className={'slide--prev'}>
         {'<'}
       </button>
-
       <div ref={slideRef} className={'img-group'}>
         {[...new Array(4)].map((img, index) => {
           return (

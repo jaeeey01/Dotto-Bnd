@@ -220,7 +220,7 @@ export const CommonForm = (props: IRegister.PROPS) => {
       </section>
       <section className={cn('register-items pt-12')}>
         <label>성별</label>
-        <div className={'flex'}>
+        <div className={'flex items-end'}>
           <input
             checked={gender === 'male'}
             name={'gender'}

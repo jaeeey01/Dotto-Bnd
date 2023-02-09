@@ -3,6 +3,7 @@ import LOGO from '@/assets/icons/logo/dotto.svg'
 import CLOSE from '@/assets/icons/nav/x-button.svg'
 import { Link } from 'react-router-dom'
 import { SearchForm } from '@/components/search/SearchForm'
+import Image from '@/components/common/image/Image'
 
 export namespace IEvent {
   export type handleClick = React.MouseEvent<HTMLElement>
@@ -29,7 +30,7 @@ export const Top = () => {
     <article className="top-container">
       <section className="logo-wrapper">
         <Link to="/">
-          <img width={103} height={40} alt="닷투 로고" src={LOGO} />
+          <Image width={103} height={40} alt="닷투 로고" src={LOGO} />
         </Link>
       </section>
 
@@ -38,7 +39,7 @@ export const Top = () => {
       {showSearch && (
         <section className="search-bar__button--close">
           <button type="button" onClick={() => closeSearchBar(!showSearch)}>
-            <img alt="검색 닫기" src={CLOSE} width={18} height={18} />
+            <Image alt="검색 닫기" src={CLOSE} width={18} height={18} />
           </button>
         </section>
       )}
