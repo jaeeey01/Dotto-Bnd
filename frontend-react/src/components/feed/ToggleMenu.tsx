@@ -1,5 +1,5 @@
 import Typography from '@/components/common/typography/Typography'
-import style from '@/components/feed/FeedLists.module.scss'
+import '@/components/feed/FeedLists.scss'
 import Image from '@/components/common/image/Image'
 import DELETE from '@/assets/icons/common/delete.svg'
 import EDIT from '@/assets/icons/common/pencil.svg'
@@ -17,13 +17,13 @@ export const ToggleMenu = (props: Props) => {
   return (
     <div
       className={cn(
-        style.feed__toggle__menu,
+        'feed__toggle__menu',
         selectedIndex === keyIndex ? 'open' : 'hide'
       )}
     >
       <ul>
         <li>
-          <button type={'button'} className={style.feed__toggle__menu__button}>
+          <button type={'button'} className={'feed__toggle__menu__button'}>
             <Typography
               variant={'body1'}
               fontWeight={'medium'}
@@ -35,7 +35,7 @@ export const ToggleMenu = (props: Props) => {
           </button>
         </li>
         <li>
-          <button type={'button'} className={style.feed__toggle__menu__button}>
+          <button type={'button'} className={'feed__toggle__menu__button'}>
             <Typography
               variant={'body1'}
               fontWeight={'medium'}

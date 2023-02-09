@@ -6,6 +6,7 @@ import style from '@/components/feed/FeedHeader.module.scss'
 import FilterButton from '@/components/board/FilterButton'
 import SortSelector from '@/components/board/SortSelector'
 import { useSortField } from '@/lib/hooks/useSortField'
+import cn from 'classnames'
 
 export const FeedHeader = () => {
   const { selected, setSelected } = useSortField()
@@ -15,13 +16,13 @@ export const FeedHeader = () => {
   }
 
   return (
-    <header className={style.feed__header}>
+    <header className={cn(style.feed__header)}>
       <nav className={style.feed__container}>
         <div className={style.feed__nav}>
           <Link to="/">
             <img width={103} height={40} alt="닷투 로고" src={LOGO} />
           </Link>
-          <Bottom />
+          <Bottom className={'pt-8 pl-24'} />
         </div>
         <div className={style.feed__sort}>
           <SortSelector selected={selected} setSelected={setSelected} />

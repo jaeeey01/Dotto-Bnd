@@ -1,4 +1,4 @@
-import style from '@/components/feed/FeedLists.module.scss'
+import '@/components/feed/FeedLists.scss'
 import Typography from '@/components/common/typography/Typography'
 import Image from '@/components/common/image/Image'
 import MENU from '@/assets/icons/myfeed/dotmenu.svg'
@@ -8,7 +8,7 @@ import SUBMIT from '@/assets/icons/myfeed/submit.svg'
 import React, { useState } from 'react'
 import { ToggleMenu } from '@/components/feed/ToggleMenu'
 import Slider from 'react-slick'
-import '@/components/feed/FeedLists.module.scss'
+import '@/components/feed/FeedLists.scss'
 
 interface SlideButtonProps {
   className?: any
@@ -158,26 +158,22 @@ export const FeedLists = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    prevArrow: <PrevArrow className={style.test_class} />,
+    prevArrow: <PrevArrow />,
     nextArrow: <NextArrow />,
-    //dotsClass: style.custom_dots,
-    //customPaging: function (i: number) {
-    //  return <button type={'button'} className={style.slick_active} />
-    //},
   }
 
   return (
-    <article className={style.feed__container}>
+    <article className={'feed__container'}>
       <ul>
         {mockData.map((feed, index) => {
           return (
-            <li key={index} className={style.feed__card}>
-              <section className={style.feed__profile}>
+            <li key={index} className={'feed__card'}>
+              <section className={'feed__profile'}>
                 <section className={'flex'}>
                   <Image
                     width={40}
                     height={40}
-                    className={style.feed__profile__img}
+                    className={'feed__profile__img'}
                     src={feed.post.profile || 'https://picsum.photos/300/300'}
                     alt={`thubnail`}
                   />
@@ -214,7 +210,7 @@ export const FeedLists = () => {
                   return (
                     <div key={thumbnail_index}>
                       <Image
-                        className={style.feed__thumbnail}
+                        className={'feed__thumbnail'}
                         src={img.src}
                         alt={`thumbnail`}
                       />
@@ -223,27 +219,27 @@ export const FeedLists = () => {
                 })}
               </Slider>
 
-              <section className={style.feed__information}>
+              <section className={'feed__information'}>
                 <Hearts count={feed.post.like} className={'mr-24'} />
                 <Comments count={feed.post.comment.length} />
               </section>
 
               <hr />
 
-              <section className={style.feed__comment__container}>
+              <section className={'feed__comment__container'}>
                 <Image
                   width={32}
                   height={32}
-                  className={style.my__profile__img}
+                  className={'my__profile__img'}
                   src={feed.user.profile || 'https://picsum.photos/300/300'}
                   alt={`my profile`}
                 />
                 <input
                   type={'text'}
                   placeholder={'댓글을 입력하세요...'}
-                  className={style.feed__comment__input}
+                  className={'feed__comment__input'}
                 />
-                <button type={'button'} className={style.feed__comment__submit}>
+                <button type={'button'} className={'feed__comment__submit'}>
                   <Image
                     width={32}
                     height={32}
