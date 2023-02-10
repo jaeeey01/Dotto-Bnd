@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from 'axios'
 
-const baseURL = 'http://3.39.107.150:9002/api'
+const baseURL = 'https://api.dotto.site/api'
 
 const instance: AxiosInstance = axios.create({
   baseURL,
