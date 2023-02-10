@@ -41,7 +41,7 @@ export const UserForm = (props: IRegister.OPTIONS) => {
         타투이스트와 연락할 수단을 선택해 주세요.
       </Typography>
       <section className={'mt-20 flex'}>
-        <div className={'flex items-center'}>
+        <div className={'flex items-end mr-8'}>
           <input
             checked={contactType === 'phone'}
             id={'phone'}
@@ -55,7 +55,7 @@ export const UserForm = (props: IRegister.OPTIONS) => {
             전화번호
           </label>
         </div>
-        <div className={'flex items-center'}>
+        <div className={'flex items-end'}>
           <input
             id={'email'}
             name={'contactType'}

@@ -13,6 +13,10 @@ export const AFTERNOON_REQUEST_TIMES = [...new Array(12)].map(
   generateTimesCallback(12)
 )
 
+export const ALL_REQUEST_TIMES = [...new Array(20)].map(
+  generateTimesCallback(20)
+)
+
 export const TATTO_TYPE_LIST = [
   { type: '커버업 타투', value: 0 },
   { type: '새로운 타투', value: 1 },

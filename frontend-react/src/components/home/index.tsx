@@ -3,6 +3,7 @@ import { BoardLabel } from '@/components/board/BoardLabel'
 import { LABEL } from '@/constants/placeholders'
 import PostList from '@/components/board/PostList'
 import './index.scss'
+import dummy from '@/assets/dummy/board'
 import { ins } from '@/lib/axios'
 
 export const Main = () => {
@@ -21,7 +22,7 @@ export const Main = () => {
             subTitle={LABEL.DOTTO_SUB_TITLE}
             type={'home'}
           />
-          <PostList list={undefined} />
+          <PostList list={dummy} />
         </section>
 
         <section>
@@ -30,7 +31,7 @@ export const Main = () => {
             subTitle={LABEL.BOARD_SUB_TITLE}
             type={'home'}
           />
-          <PostList list={undefined} />
+          <PostList list={dummy} />
         </section>
       </main>
     </>

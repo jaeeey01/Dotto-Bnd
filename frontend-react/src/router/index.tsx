@@ -6,15 +6,17 @@ import {
 } from 'react-router-dom'
 import { Main } from '@/components/home'
 import MainLayout from '@/components/layout/MainLayout'
-import BoardPost from '@/pages/BoardPost'
-import BoardPostDetail from '@/pages/BoardPostDetail'
-import BoardWrite from '@/pages/BoardWrite'
 import { KakaoLoginSuccess } from '@/components/utils/kakao-api/KakaoLoginSuccess'
 import { SearchResults } from '@/pages/search/SearchResults'
 import Request from '@/pages/request/Request'
 import { UserResults } from '@/components/search/UserResults'
 import { SearchIndex } from '@/components/search/SearchIndex'
-import { FeedIndex } from '@/pages/feed/FeedIndex'
+import { FeedIndex, FeedPost } from '@/pages/feed/index'
+import BoardPost from '@/pages/board/BoardPost'
+import BoardPostDetail from '@/pages/board/BoardPostDetail'
+import BoardWrite from '@/pages/board/BoardWrite'
+import MyPageLayout from '@/components/layout/mypage/MyPageLayout'
+import TransmissionList from '@/pages/mypage/TransmissionList'
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -28,11 +30,6 @@ export const router = createBrowserRouter(
             <Route path="view/:postNo" element={<BoardPostDetail />} />
             <Route path="write" element={<BoardWrite />} />
           </Route>
-
-          {/*<Route path="feed">*/}
-          {/*  <Route index />*/}
-          {/*  <Route path="post" />*/}
-          {/*</Route>*/}
         </Route>
 
         <Route path="search" element={<SearchResults />}>
@@ -41,12 +38,25 @@ export const router = createBrowserRouter(
         </Route>
 
         <Route path="estimate/:postNo" />
-        <Route path="my" />
         <Route path="401" />
         <Route path="*" />
       </Route>
 
-      <Route index path="feed" element={<FeedIndex />} />
+      <Route path="mypage" element={<MyPageLayout />}>
+        <Route index element={<TransmissionList />} />
+        <Route path="transmission-list" element={<TransmissionList />} />
+        <Route path="progress-list" element={<div />} />
+        <Route path="complete-list" element={<div />} />
+        <Route path="cancellation-list" element={<div />} />
+        <Route path="procedure-history" element={<div />} />
+        <Route path="change-password" element={<div />} />
+        <Route path="withdrawl" element={<div />} />
+      </Route>
+
+      <Route path={'feed'}>
+        <Route index element={<FeedIndex />} />
+        <Route path={'post'} element={<FeedPost />} />
+      </Route>
 
       <Route path="request">
         <Route index element={<Navigate to="/*" />} />

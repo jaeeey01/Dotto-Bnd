@@ -3,7 +3,7 @@ import { gapi } from 'gapi-script'
 import GoogleLogin, {
   GoogleLoginResponse,
   GoogleLoginResponseOffline,
-} from 'react-google-login'
+} from '@leecheuk/react-google-login'
 
 const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID
 

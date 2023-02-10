@@ -1,8 +1,12 @@
-import { useEffect, useState } from 'react'
+import { ComponentProps, useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import Typography from '@/components/common/typography/Typography'
+import cn from 'classnames'
 
-export const Bottom = () => {
+interface Props extends ComponentProps<'nav'> {}
+
+export const Bottom = (props: Props) => {
+  const { className } = props
   const location = useLocation()
   const [currentPath, setCurrentPath] = useState(location.pathname)
 
@@ -11,13 +15,16 @@ export const Bottom = () => {
   }, [location])
 
   return (
-    <nav className="navigation">
+    <nav className={cn(className, 'navigation')}>
       <ul>
         <li className={'mr-20'}>
           <Link to={'/'}>
             <Typography
-              variant={'span'}
-              className={'nav-title' + (currentPath === '/' ? 'active' : '')}
+              as="span"
+              variant={'sub2'}
+              className={
+                'nav-title' + (currentPath === '/dotto/board' ? 'active' : '')
+              }
             >
               HOME
             </Typography>
@@ -26,7 +33,8 @@ export const Bottom = () => {
         <li className={'mr-20'}>
           <Link to={'/'}>
             <Typography
-              variant={'span'}
+              as="span"
+              variant={'sub2'}
               className={'nav-title' + (currentPath === '/try' ? 'active' : '')}
             >
               try DOTTO
@@ -35,7 +43,8 @@ export const Bottom = () => {
         </li>
         <li className={'mr-20'}>
           <Typography
-            variant={'span'}
+            as="span"
+            variant={'sub2'}
             className={
               'nav-title' +
               (currentPath === '/home' || currentPath === '/home-board'
@@ -48,7 +57,8 @@ export const Bottom = () => {
               <li>
                 <Link to={'/home/board'}>
                   <Typography
-                    variant={'span'}
+                    as="span"
+                    variant={'sub2'}
                     className={
                       'nav-title' + (currentPath === '/home' ? 'active' : '')
                     }
@@ -60,7 +70,8 @@ export const Bottom = () => {
               <li>
                 <Link to={'/'}>
                   <Typography
-                    variant={'span'}
+                    as="span"
+                    variant={'sub2'}
                     className={
                       'nav-title' +
                       (currentPath === '/home-board' ? 'active' : '')
@@ -76,7 +87,8 @@ export const Bottom = () => {
         <li className={'mr-20'}>
           <Link to={'/feed'}>
             <Typography
-              variant={'span'}
+              as="span"
+              variant={'sub2'}
               className={
                 'nav-title' + (currentPath === '/feed' ? 'active' : '')
               }
@@ -87,7 +99,8 @@ export const Bottom = () => {
         </li>
         <li className={'mr-20'}>
           <Typography
-            variant={'span'}
+            as="span"
+            variant={'sub2'}
             className={'nav-title' + (currentPath === '/faq' ? 'active' : '')}
           >
             고객지원
@@ -95,7 +108,8 @@ export const Bottom = () => {
               <li>
                 <Link to={'/'}>
                   <Typography
-                    variant={'span'}
+                    as="span"
+                    variant={'sub2'}
                     className={
                       'nav-title' + (currentPath === '/faq' ? 'active' : '')
                     }
@@ -107,7 +121,8 @@ export const Bottom = () => {
               <li>
                 <Link to={'/'}>
                   <Typography
-                    variant={'span'}
+                    as="span"
+                    variant={'sub2'}
                     className={
                       'nav-title' + (currentPath === '/notice' ? 'active' : '')
                     }

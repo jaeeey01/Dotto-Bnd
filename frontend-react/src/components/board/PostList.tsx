@@ -12,7 +12,10 @@ function PostList({ list }: { list?: DottoPost[] }) {
         {list.map((post, index) => {
           return (
             <li key={crypto.randomUUID()}>
-              <Link className="post-list__post" to={`post/${post.postNo}`}>
+              <Link
+                className="post-list__post"
+                to={`/dotto/board/view/${post.postNo}`}
+              >
                 <Image
                   className="post-image"
                   src={post.originName}
