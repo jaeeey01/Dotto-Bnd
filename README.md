@@ -1,3 +1,3 @@
 # Dotto
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/1d5d3e12-195f-4734-9875-c85a5aa11a0e/deploy-status?branch=main)](https://app.netlify.com/sites/fluffy-palmier-02077d/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/709a77cc-0226-4603-936e-a39f14d71c22/deploy-status)](https://app.netlify.com/sites/dottosite/deploys)
