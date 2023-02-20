@@ -11,6 +11,9 @@ import com.dotto.app.repository.post.FeedRepository;
 import com.dotto.app.service.file.FileService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -29,6 +32,13 @@ public class FeedService {
     private final FeedRepository feedRepository;
     private final FileService fileService;
 
+
+    public FeedListDto readAll (FeedReadCondition cond){
+        Pageable pageable = PageRequest.of(cond.getPage(), cond.getSize());
+        Page<Feed> feedPage = feedRepository.findAll(pageable);
+        List<FeedPostDto> postDto = feedPage.getContent().stream().map(feed -> FeedPostDto.toDto(feed.getFeedNo(),feed.getContent(),feed.getLikeHit(),feed.getMember().getMemberNo())).collect(Collectors.toList());
+        return FeedListDto.toDto(feedPage, postDto);
+    }
 
     public FeedDetailDto read (Long feedNo){
         return FeedDetailDto.toDto(feedRepository.findByFeedNoWithDeletedYnEqualsN(feedNo).orElseThrow(FeedNotFoundException::new));
