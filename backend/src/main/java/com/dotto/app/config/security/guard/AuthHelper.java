@@ -2,7 +2,7 @@ package com.dotto.app.config.security.guard;
 
 import com.dotto.app.config.security.CustomAuthenticationToken;
 import com.dotto.app.config.security.CustomUserDetails;
-import com.dotto.app.entity.member.RoleType;
+import com.dotto.app.config.constants.RoleType;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.Authentication;
