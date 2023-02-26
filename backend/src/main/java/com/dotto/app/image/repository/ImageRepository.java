@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface ImageRepository extends JpaRepository<Image,Long> {
 
-    @Query("select new com.dotto.app.service.search.convert.ImgNoPostNoConvert (min(imgNo), dottoPost.postNo) from Image where dottoPost.postNo in(:postNo) group by dottoPost.postNo")
+    @Query("select new com.dotto.app.search.service.convert.ImgNoPostNoConvert (min(imgNo), dottoPost.postNo) from Image where dottoPost.postNo in(:postNo) group by dottoPost.postNo")
     List<ImgNoPostNoConvert> findTitleToImages(List<Long> postNo);
 }
