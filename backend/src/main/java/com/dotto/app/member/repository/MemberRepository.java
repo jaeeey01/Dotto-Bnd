@@ -28,13 +28,13 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     Optional<Member>findByMemberNoAndDeletedYnEqualsN(@Param("memberNo") Long memberNo);
 
 
-    @Query("select new com.dotto.app.dto.search.MemberList(m.memberNo, m.nickname, p.originName) from Member m " +
+    @Query("select new com.dotto.app.search.dto.MemberList(m.memberNo, m.nickname, p.originName) from Member m " +
             "join MemberRole r on m.memberNo = r.member.memberNo " +
             "and r.role.no = 2 and m.nickname like concat('%',:nickname,'%') left join ProfileImage p on m.memberNo = p.member.memberNo ")
 
     List<MemberList> findBySearchNormalNickname(String nickname);
 
-    @Query("select new com.dotto.app.dto.search.ArtistList(m.memberNo, m.nickname, p.originName) from Member m " +
+    @Query("select new com.dotto.app.search.dto.ArtistList(m.memberNo, m.nickname, p.originName) from Member m " +
             "join MemberRole r on m.memberNo = r.member.memberNo " +
             "and r.role.no = 3 and m.nickname like concat('%',:nickname,'%') left join ProfileImage p on m.memberNo = p.member.memberNo ")
     List<ArtistList> findBySearchArtistNickname(String nickname);

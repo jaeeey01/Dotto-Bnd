@@ -22,10 +22,10 @@ public interface FollowRepository extends JpaRepository<Follow,Long> {
     @Query("select count(f) from Follow f join Member m on m = f.follower where m.memberNo= :memberNo ")
     int followerCheck(Long memberNo);
 
-    @Query("select new com.dotto.app.dto.follow.FollowerList(m.memberNo, m.nickname) from Member m where m.memberNo in(select f.follower.memberNo from Follow f where f.following.memberNo = :memberNo)")
+    @Query("select new com.dotto.app.follow.dto.FollowerList(m.memberNo, m.nickname) from Member m where m.memberNo in(select f.follower.memberNo from Follow f where f.following.memberNo = :memberNo)")
     List<FollowerList> findByFollowerList(Long memberNo);
 
-    @Query("select new com.dotto.app.dto.follow.FollowingList(m.memberNo, m.nickname) from Member m where m.memberNo in(select f.following.memberNo from Follow f where f.follower.memberNo = :memberNo)")
+    @Query("select new com.dotto.app.follow.dto.FollowingList(m.memberNo, m.nickname) from Member m where m.memberNo in(select f.following.memberNo from Follow f where f.follower.memberNo = :memberNo)")
     List<FollowingList> findByFollowingList(Long memberNo);
 
 
