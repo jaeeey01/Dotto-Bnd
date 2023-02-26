@@ -28,10 +28,9 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ResourceUtils;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -175,20 +174,20 @@ public class InitDB {
     private String readFileAsString(String fileName) throws IOException {
         String br;
         //도커용
-        ClassPathResource classPathResource = new ClassPathResource("classpath:"+fileName);
+//        ClassPathResource classPathResource = new ClassPathResource("classpath:"+fileName);
 
-        if(!classPathResource.exists()){
-            throw new IllegalArgumentException();
-        }
+//        if(!classPathResource.exists()){
+//            throw new IllegalArgumentException();
+//        }
 
-          br = new BufferedReader(new InputStreamReader(classPathResource.getInputStream())).readLine();
+//          br = new BufferedReader(new InputStreamReader(classPathResource.getInputStream())).readLine();
 
         //로컬용
-//        File resource = ResourceUtils.getFile("classpath:"+fileName.replaceFirst("/",""));
-//        br = new BufferedReader(new FileReader(resource)).readLine();
+        File resource = ResourceUtils.getFile("classpath:"+fileName.replaceFirst("/",""));
+        br = new BufferedReader(new FileReader(resource)).readLine();
 
         return br;
-
+//test
     }
 
 }

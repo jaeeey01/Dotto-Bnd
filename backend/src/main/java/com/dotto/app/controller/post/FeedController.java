@@ -2,6 +2,7 @@ package com.dotto.app.controller.post;
 
 import com.dotto.app.aop.AssignMemberNo;
 import com.dotto.app.dto.post.FeedCreateRequest;
+import com.dotto.app.dto.post.FeedReadCondition;
 import com.dotto.app.dto.post.FeedUpdateRequest;
 import com.dotto.app.dto.response.Response;
 import com.dotto.app.service.post.FeedService;
@@ -23,8 +24,8 @@ public class FeedController {
     @ApiOperation(value = "피드 게시물 전체 목록", notes = "피드 게시물 전체 목록을 조회한다")
     @GetMapping(value = "/api/feed")
     @ResponseStatus(HttpStatus.OK)
-    public Response readAll(){
-        return Response.success();
+    public Response readAll(FeedReadCondition cond){
+        return Response.success(feedService.readAll(cond));
     }
 
     @ApiOperation(value = "피드 게시물 상세 보기" ,notes = "피드 게시물을 상세 조회한다.")
