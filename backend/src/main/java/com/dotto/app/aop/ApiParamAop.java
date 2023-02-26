@@ -24,14 +24,13 @@ public class ApiParamAop {
 
         Object[] args = joinPoint.getArgs();
         for(Object obj : args){
-            log.info("AOP --- Request value " + obj);
+            log.info("AOP --- Request value :: " + obj);
         }
     }
 
-    @AfterReturning(value = "cut()", returning = "returnObj")
-    public void afterReturn(JoinPoint joinPoint, Object returnObj){
-        log.info("AOP --- Response obj  " + returnObj.toString());
-
-    }
-
+//    @AfterReturning(value = "cut()", returning = "returnObj")
+//    public void afterReturn(JoinPoint joinPoint, Object returnObj){
+//        log.info("AOP --- Response obj  " + returnObj.toString());
+//
+//    }
 }
