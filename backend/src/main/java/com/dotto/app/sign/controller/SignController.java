@@ -20,9 +20,8 @@ import static com.dotto.app.common.response.Response.success;
 
 @Api(value = "Sign Controller" ,tags ="sign" )
 @Slf4j
-@RestController
+@RestController("/api")
 @RequiredArgsConstructor
-@RequestMapping(value = "/api")
 public class SignController {
 
     private final SignService signService;

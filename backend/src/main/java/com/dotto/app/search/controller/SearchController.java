@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @Api(value = "Search Controller", tags = "Search")
-@RestController
+@RestController("/api")
 @RequiredArgsConstructor
 public class SearchController {
 
     private final SearchService searchService;
 
     @ApiOperation(value = "키워드 검색", notes = "키워드 검색을 한다")
-    @GetMapping("/api/search/{searchKeyword}")
+    @GetMapping("/search/{searchKeyword}")
     @ResponseStatus(HttpStatus.OK)
     public Response keywordSearch(
             @ApiParam(value = "검색 키워드", required = true)

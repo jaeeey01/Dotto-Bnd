@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @Api(value = "Contact Controller", tags = "Contact")
-@RestController
+@RestController("/api")
 @RequiredArgsConstructor
 @Slf4j
 public class ContactController {
@@ -23,7 +23,7 @@ public class ContactController {
 
 
     @ApiOperation(value = "연락 수단 생성 요청", notes = "연락 수단 생성을 요청한다")
-    @PostMapping("/api/contact")
+    @PostMapping("/contact")
     @ResponseStatus(HttpStatus.CREATED)
     public Response create (ContactCreateRequest req){
         return Response.success(contactService.create(req));

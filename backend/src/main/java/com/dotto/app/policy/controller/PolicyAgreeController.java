@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @Api(value = "PolicyAgree Controller", tags = "PolicyAgree")
-@RestController
+@RestController("/api")
 @RequiredArgsConstructor
 public class PolicyAgreeController {
 
     private final PolicyAgreeService policyAgreeService;
 
     @ApiOperation(value = "이용약관 동의", notes = "이용약관을 동의 한다")
-    @PostMapping("/api/policyAgree2")
+    @PostMapping("/policyAgree")
     @ResponseStatus(HttpStatus.OK)
     public Response create (PolicyAgreeRequest req){
         return Response.success(policyAgreeService.create(req));
