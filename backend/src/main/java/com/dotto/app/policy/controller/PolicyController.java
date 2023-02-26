@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @Api(value = "Policy Controller", tags = "Policy")
-@RestController
+@RestController("/api")
 @RequiredArgsConstructor
 public class PolicyController {
 
     private final PolicyService policyService;
 
     @ApiOperation(value = "이용약관 조회", notes = "이용약관을 조회한다")
-    @GetMapping("/api/policy")
+    @GetMapping("/policy")
     @ResponseStatus(HttpStatus.OK)
     public Response read(){
         return Response.success(policyService.read());

@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
 
 @Api(value = "OAuth Controller" ,tags ="oauth" )
-@RestController
+@RestController("/api")
 @RequiredArgsConstructor
 public class OAuthController {
 

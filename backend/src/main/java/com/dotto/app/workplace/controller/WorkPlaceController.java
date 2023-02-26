@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @Api(value = "workPlace Controller", tags = "WorkPlace")
-@RestController
+@RestController("/api")
 @RequiredArgsConstructor
 public class WorkPlaceController {
     private final WorkPlaceService workPlaceService;
 
     @ApiOperation(value = "내 작업실 생성 요청", notes = "내 작업실 생성 요청을 한다")
-    @PostMapping("/api/workplace")
+    @PostMapping("/workplace")
     @ResponseStatus(HttpStatus.CREATED)
     @AssignMemberNo
     public Response create( @ModelAttribute WorkPlaceCreateRequest req){

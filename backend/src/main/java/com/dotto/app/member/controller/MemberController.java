@@ -14,14 +14,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @Api(value = "Member Controller", tags = "Member")
-@RestController
+@RestController("/api")
 @RequiredArgsConstructor
 public class MemberController {
 
     private final MemberService memberService;
 
     @ApiOperation(value = " 사용자 정보 조회", notes = "사용자 정보를 조회 한다")
-    @GetMapping("/api/members/{id}")
+    @GetMapping("/members/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Response read(
             @ApiParam(value = "사용자 id", required = true)
@@ -30,7 +30,7 @@ public class MemberController {
     }
 
     @ApiOperation(value = "사용자 정보 수정", notes = "사용자 정보를 수정 한다")
-    @PutMapping("/api/members/{id}")
+    @PutMapping("/members/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Response update(
             @ApiParam(value = "사용자 id", required = true)
@@ -39,7 +39,7 @@ public class MemberController {
     }
 
     @ApiOperation(value = "사용자 정보 삭제", notes = "사용자 정보를 삭제 한다")
-    @DeleteMapping("/api/members/{id}")
+    @DeleteMapping("/members/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Response delete(
             @ApiParam(value = "사용자 id", required = true)
@@ -49,7 +49,7 @@ public class MemberController {
     }
 
     @ApiOperation(value = "닉네임 중복 여부", notes = "닉네임 중복 여부를 조회한다")
-    @GetMapping("/api/members/existsbynickname/{nickname}")
+    @GetMapping("/members/existsbynickname/{nickname}")
     @ResponseStatus(HttpStatus.OK)
     public Response existsByNickname(
             @ApiParam(value = "중복 조회할 닉네임", required = true)
@@ -58,7 +58,7 @@ public class MemberController {
     }
 
     @ApiOperation(value = "아이디 중복 여부", notes = "아이디 중복 여부를 조회한다")
-    @GetMapping("/api/members/existsbyid/{id}")
+    @GetMapping("/members/existsbyid/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Response existsById(
             @ApiParam(value = "중복 조회할 아이디", required = true)
@@ -67,7 +67,7 @@ public class MemberController {
     }
 
     @ApiOperation(value = "권한 변경", notes = "아티스트 <-> 일반회원 권한 변경을 한다")
-    @GetMapping("/api/members/roles")
+    @GetMapping("/members/roles")
     public Response roleSwitch(MemberRoleSwitchRequest req){
         memberService.roleSwitch(req);
         return Response.success();
@@ -75,7 +75,7 @@ public class MemberController {
 
 
     @ApiOperation(value = "프로필 사진 업로드 ", notes = "프로필 사진을 업로드 한다")
-    @PostMapping("/api/members/profile")
+    @PostMapping("/members/profile")
     @AssignMemberNo
     @ResponseStatus(HttpStatus.OK)
     public Response uploadProfile(MemberProfileUploadRequest req){
@@ -83,7 +83,7 @@ public class MemberController {
     }
 
     @ApiOperation(value = "프로필 사진 삭제", notes = "프로필 사진을 삭제 한다")
-    @DeleteMapping("/api/members/profile/{id}")
+    @DeleteMapping("/members/profile/{id}")
     @AssignMemberNo
     @ResponseStatus(HttpStatus.OK)
     public Response deletedProfile(@PathVariable(value = "memberNo") Long id){
