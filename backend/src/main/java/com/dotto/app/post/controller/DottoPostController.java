@@ -15,7 +15,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @Api(value = "DottoPost Controller", tags = "dottoPost")
-@RestController("/api")
+@RestController
+@RequestMapping("/api")
 @RequiredArgsConstructor
 @Slf4j
 public class DottoPostController {
