@@ -44,7 +44,7 @@ public class DottoPostCreateRequest {
     private String totalTime;
 
     @ApiModelProperty(value = "이미지", notes = "게시글 이미지를 입력해 주세요")
-    private List<MultipartFile> postPhoto = new ArrayList<>();
+    private List<String> postPhoto = new ArrayList<>();
 
     @ApiModelProperty(value = "태그", notes = "태그를 입력해 주세요", example = "#멋져, #훈남")
     private List<String> tags;

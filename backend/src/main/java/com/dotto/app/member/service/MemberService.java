@@ -21,7 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class MemberService {
 
     private final MemberRepository memberRepository;
-    private final FileService fileService;
+//    private final FileService fileService;
 
     public MemberDto read(Long memberNo){
         return MemberDto.toDto(memberRepository.findByMemberNoAndDeletedYnEqualsN(memberNo).orElseThrow(MemberNotFoundException::new));
@@ -44,10 +44,10 @@ public class MemberService {
     public MemberProfileUploadResponse uploadProfile(MemberProfileUploadRequest req){
         Member member = memberRepository.findById(req.getMemberNo()).orElseThrow(MemberNotFoundException::new);
         if(member.getProfileImage()!=null){
-            deletedImage(member.getProfileImage());
+//            deletedImage(member.getProfileImage());
         }
         Member.ProfileImageUpdateResult rs = member.uploadProfile(req);
-        uploadImage(rs.getAddedImageFile(), rs.getAddedImages());
+//        uploadImage(rs.getAddedImageFile(), rs.getAddedImages());
         return new MemberProfileUploadResponse(member.getMemberNo());
     }
 
@@ -56,7 +56,7 @@ public class MemberService {
         log.info("deletedProfile memberNo ={}", id);
         Member member = memberRepository.findById(id).orElseThrow(MemberNotFoundException::new);
         member.deletedProfile(member.getProfileImage());
-        deletedImage(member.getProfileImage());
+//        deletedImage(member.getProfileImage());
 
     }
 
@@ -81,11 +81,11 @@ public class MemberService {
     }
 
 
-    private void uploadImage(MultipartFile files, ProfileImage image){
-        fileService.upload(files, image.getName());
-    }
+//    private void uploadImage(MultipartFile files, ProfileImage image){
+//        fileService.upload(files, image.getName());
+//    }
 
-    private void deletedImage(ProfileImage image){
-        fileService.deleted(image.getName());
-    }
+//    private void deletedImage(ProfileImage image){
+//        fileService.deleted(image.getName());
+//    }
 }

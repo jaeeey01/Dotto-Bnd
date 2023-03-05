@@ -112,7 +112,7 @@ public class Member extends EntityDate {
     public void deletedProfile(ProfileImage deleteImage){
         deletedProfileImage(deleteImage);
     }
-    private ProfileImageUpdateResult findProfileUpdatedResult(MultipartFile addedFile){
+    private ProfileImageUpdateResult findProfileUpdatedResult(String addedFile){
         ProfileImage addedImages = convertFilesToImage(addedFile);
         return new ProfileImageUpdateResult(addedFile, addedImages);
     }
@@ -133,14 +133,14 @@ public class Member extends EntityDate {
         if(deleteImages.equals(this.profileImage)) this.profileImage = null;
     }
 
-    private ProfileImage convertFilesToImage(MultipartFile file){
-        return new ProfileImage(file.getOriginalFilename());
+    private ProfileImage convertFilesToImage(String file){
+        return new ProfileImage(file);
     }
 
     @Getter
     @AllArgsConstructor
     public static class ProfileImageUpdateResult{
-        private MultipartFile addedImageFile;
+        private String addedImageFile;
         private ProfileImage addedImages;
     }
 

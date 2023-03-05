@@ -20,7 +20,7 @@ public class WorkPlaceCreateRequest {
 
     @ApiModelProperty(value = "작업실 이미지", notes = "내 작업실 이미지를 첨부해 주세요")
     @NotBlank
-    private List<MultipartFile> workImg;
+    private List<String> workImg;
 
     @ApiModelProperty(value = "주소", notes = "주소를 입력해 주세요", required = true, example = "서울시 강남구")
     @NotBlank

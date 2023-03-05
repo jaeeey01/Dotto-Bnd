@@ -30,7 +30,7 @@ public class FeedService {
 
     private final MemberRepository memberRepository;
     private final FeedRepository feedRepository;
-    private final FileService fileService;
+//    private final FileService fileService;
 
 
     public FeedListDto readAll (FeedReadCondition cond){
@@ -46,10 +46,11 @@ public class FeedService {
     @Transactional
     public FeedCreateResponse create (FeedCreateRequest req){
         log.info("memberNo = {}", req.getMemberNo());
-        List<FeedImage> feedImages = req.getFeedImg().stream().map(i -> new FeedImage(i.getOriginalFilename())).collect(Collectors.toList());
+//        List<FeedImage> feedImages = req.getFeedImg().stream().map(i -> new FeedImage(i.getOriginalFilename())).collect(Collectors.toList());
+        List<FeedImage> feedImages = IntStream.range(0, req.getFeedImg().size()).mapToObj(i -> new FeedImage(req.getFeedImg().get(i))).collect(Collectors.toList());
         Member member = memberRepository.findById(req.getMemberNo()).orElseThrow(MemberNotFoundException::new);
         Feed feed = feedRepository.save(new Feed(member, req.getContent(), feedImages));
-        uploadImage(feed.getFeedImages(), req.getFeedImg());
+//        uploadImage(feed.getFeedImages(), req.getFeedImg());
 
         return new FeedCreateResponse(feed.getFeedNo());
     }
@@ -58,8 +59,8 @@ public class FeedService {
     public FeedUpdateResponse update(Long feedNo, FeedUpdateRequest req){
         Feed feed = feedRepository.findByFeedNoWithDeletedYnEqualsN(feedNo).orElseThrow(FeedNotFoundException::new);
         Feed.FeedImageUpdateResult rs = feed.update(req);
-        uploadImage(rs.getAddedImages(), rs.getAddedImageFiles());
-        deletedImage(rs.getDeletedImages());
+//        uploadImage(rs.getAddedImages(), rs.getAddedImageFiles());
+//        deletedImage(rs.getDeletedImages());
         return new FeedUpdateResponse(feed.getFeedNo());
     }
 
@@ -67,17 +68,17 @@ public class FeedService {
     public void delete (Long feedNo){
         Feed feed = feedRepository.findByFeedNoWithDeletedYnEqualsN(feedNo).orElseThrow(FeedNotFoundException::new);
         feed.deleted();
-        deletedImage(feed.getFeedImages());
+//        deletedImage(feed.getFeedImages());
     }
 
-    private void uploadImage(List<FeedImage> images, List<MultipartFile> files){
-        IntStream.range(0, images.size()).forEach(i -> fileService.upload(files.get(i), images.get(i).getName()));
+//    private void uploadImage(List<FeedImage> images, List<MultipartFile> files){
+//        IntStream.range(0, images.size()).forEach(i -> fileService.upload(files.get(i), images.get(i).getName()));
+//
+//    }
 
-    }
-
-    private void deletedImage(List<FeedImage> images){
-        IntStream.range(0, images.size()).forEach(i -> fileService.deleted(images.get(i).getName()));
-    }
+//    private void deletedImage(List<FeedImage> images){
+//        IntStream.range(0, images.size()).forEach(i -> fileService.deleted(images.get(i).getName()));
+//    }
 
 
 }

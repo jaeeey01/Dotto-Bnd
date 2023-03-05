@@ -47,7 +47,7 @@ public class DottoPostUpdateRequest {
     private List<String> tags;
 
     @ApiModelProperty(value = "추가된 이미지", notes = "추가된 이미지를 첨부해 주세요")
-    private List<MultipartFile> addedImages = new ArrayList<>();
+    private List<String> addedImages = new ArrayList<>();
 
     @ApiModelProperty(value = "제거된 이미지 아이디", notes = "제거된 이미지 아이디를 입력해 주세요")
     private List<Long> deletedImages = new ArrayList<>();
