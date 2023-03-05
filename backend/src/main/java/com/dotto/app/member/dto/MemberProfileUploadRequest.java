@@ -18,7 +18,7 @@ public class MemberProfileUploadRequest {
 
     @ApiModelProperty(value = "업로드할 프로필 사진 ", notes = "업로드할 프로필 사진을 첨부 합니다.")
     @NotBlank
-    private MultipartFile uploadProfile;
+    private String uploadProfile;
 
 
 }

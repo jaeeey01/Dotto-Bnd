@@ -30,7 +30,7 @@ public class WorkPlaceService {
     private final WorkplaceRepository workplaceRepository;
     private final MemberRepository memberRepository;
 
-    private final FileService fileService;
+//    private final FileService fileService;
 
 
     @Transactional
@@ -44,10 +44,11 @@ public class WorkPlaceService {
             throw new MemberRoleAuthorizationException("내 작업실을 작성할 권한이 없습니다.");
         }
         log.info("artistCheck ={}" ,artistCheck(member));
-        List<WorkPlaceImage> images = req.getWorkImg().stream().map(i -> new WorkPlaceImage(i.getOriginalFilename())).collect(Collectors.toList());
+//        List<WorkPlaceImage> images = req.getWorkImg().stream().map(i -> new WorkPlaceImage(i.getOriginalFilename())).collect(Collectors.toList());
+        List<WorkPlaceImage> images = IntStream.range(0, req.getWorkImg().size()).mapToObj(i -> new WorkPlaceImage(req.getWorkImg().get(i))).collect(Collectors.toList());
 
         WorkPlace wk = workplaceRepository.save(new WorkPlace(member, req, images));
-        uploadImages(images, req.getWorkImg());
+//        uploadImages(images, req.getWorkImg());
 
         return new WorkPlaceCreateResponse(wk.getMember().getMemberNo());
 
@@ -58,8 +59,8 @@ public class WorkPlaceService {
 
     }
 
-    private void uploadImages(List<WorkPlaceImage> images, List<MultipartFile> fileImages){
-        IntStream.range(0, images.size()).forEach(i -> fileService.upload(fileImages.get(i), images.get(i).getName()));
-    }
+//    private void uploadImages(List<WorkPlaceImage> images, List<MultipartFile> fileImages){
+//        IntStream.range(0, images.size()).forEach(i -> fileService.upload(fileImages.get(i), images.get(i).getName()));
+//    }
 
 }

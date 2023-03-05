@@ -31,7 +31,7 @@ public class DottoPostService {
     private final MemberRepository memberRepository;
     private final DottoPostRepository dottoPostRepository;
     private final RoleRepository roleRepository;
-    private final FileService fileService;
+//    private final FileService fileService;
 
 
     @Transactional
@@ -44,13 +44,13 @@ public class DottoPostService {
 
         String salesPct = salesPctCalc(req.getSalesYn(), req.getPrice(), req.getSalesPrice());
 
-        List<Image> images = req.getPostPhoto().stream().map(i -> new Image(i.getOriginalFilename())).collect(Collectors.toList());
-
+//        List<Image> images = req.getPostPhoto().stream().map(i -> new Image(i.getOriginalFilename())).collect(Collectors.toList());
+       List<Image> images =  IntStream.range(0, req.getPostPhoto().size()).mapToObj(i -> new Image(req.getPostPhoto().get(i))).collect(Collectors.toList());
         String tags = tagsConvertString(req.getTags());
         DottoPost dottoPost = dottoPostRepository.save(
                 new DottoPost(member, req.getTitle(),req.getContent(), req.getPrice(), req.getSalesPrice(),req.getSalesYn(),req.getGenre(),req.getTotalTime(),tags,salesPct, images)
         );
-        uploadImages(dottoPost.getImages(), req.getPostPhoto());
+//        uploadImages(dottoPost.getImages(), req.getPostPhoto());
 
         return new DottoPostCreateResponse(dottoPost.getPostNo());
     }
@@ -71,8 +71,8 @@ public class DottoPostService {
         String salesPct = salesPctCalc(req.getSalesYn(), req.getPrice(), req.getSalesPrice());
         String tags = tagsConvertString(req.getTags());
         DottoPost.ImageUpdateResult rs = post.update(req, salesPct, tags);
-        uploadImages(rs.getAddedImages(), rs.getAddedImageFiles());
-        deleteImages(rs.getDeletedImages());
+//        uploadImages(rs.getAddedImages(), rs.getAddedImageFiles());
+//        deleteImages(rs.getDeletedImages());
         return new DottoPostUpdateResponse(id);
     }
 
@@ -80,7 +80,7 @@ public class DottoPostService {
     public void delete(Long id){
         DottoPost post = dottoPostRepository.findByIdWithMemberAndDeletedN(id).orElseThrow(DottoPostNotFoundException::new);
         post.deleted();
-        deleteImages(post.getImages());
+//        deleteImages(post.getImages());
         dottoPostRepository.save(post);
 
     }
@@ -104,11 +104,11 @@ public class DottoPostService {
         return memberRoles.contains(String.valueOf(RoleType.ROLE_ARTIST));
     }
 
-    private void uploadImages(List<Image> images, List<MultipartFile> fileImages){
-        IntStream.range(0, images.size()).forEach(i -> fileService.upload(fileImages.get(i), images.get(i).getName()));
-    }
-
-    private void deleteImages(List<Image> images){
-        images.stream().forEach(image -> fileService.deleted(image.getName()));
-    }
+//    private void uploadImages(List<Image> images, List<MultipartFile> fileImages){
+//        IntStream.range(0, images.size()).forEach(i -> fileService.upload(fileImages.get(i), images.get(i).getName()));
+//    }
+//
+//    private void deleteImages(List<Image> images){
+//        images.stream().forEach(image -> fileService.deleted(image.getName()));
+//    }
 }

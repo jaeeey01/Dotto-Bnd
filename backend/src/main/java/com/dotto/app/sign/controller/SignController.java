@@ -67,7 +67,7 @@ public class SignController {
 
     }
 
-    @ApiOperation(value = "액세스 토큰 제발급", notes = "리프레쉬 토큰을 통해 액세스토큰을 재발급 받는다")
+    @ApiOperation(value = "액세스 토큰 재발급", notes = "리프레쉬 토큰을 통해 액세스토큰을 재발급 받는다")
     @PostMapping("/refresh-token")
     @ResponseStatus(HttpStatus.OK)
     public Response refreshTokenResponse ( @RequestHeader(value = "Authorization") String refreshToken){

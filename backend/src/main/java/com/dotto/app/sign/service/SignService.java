@@ -51,7 +51,10 @@ public class SignService {
                         req.getGender(),
                         req.getPhone(),
                         roles,
-                        req.getLoginType()
+                        req.getLoginType(),
+                        req.getContactType(),
+                        req.getContactId()
+
                 )
         );
     }
@@ -67,7 +70,9 @@ public class SignService {
                         req.getReq().getGender(),
                         req.getReq().getPhone(),
                         roles,
-                        req.getLoginType()
+                        req.getLoginType(),
+                        req.getLoginType(),
+                        req.getId()
                 )
         );
     }

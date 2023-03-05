@@ -24,6 +24,6 @@ public class FeedCreateRequest {
     private String content;
 
     @ApiModelProperty(value = "피드 이미지", notes = "피드 이미지를 추가해 주세요")
-    private List<MultipartFile> feedImg = new ArrayList<>();
+    private List<String> feedImg = new ArrayList<>();
 
 }

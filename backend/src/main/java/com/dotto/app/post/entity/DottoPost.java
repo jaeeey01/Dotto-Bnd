@@ -15,6 +15,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.toList;
 
@@ -106,7 +107,7 @@ public class DottoPost extends EntityDate {
         return rs;
     }
 
-    private ImageUpdateResult findImageUpdatedResult(List<MultipartFile> addedImageFiles, List<Long> deleteImageIds){
+    private ImageUpdateResult findImageUpdatedResult(List<String> addedImageFiles, List<Long> deleteImageIds){
         List<Image> addedImages = convertImageFilesToImages(addedImageFiles);
         List<Image> deletedImages = convertImageIdsToImages(deleteImageIds);
         return new ImageUpdateResult(addedImageFiles, addedImages, deletedImages);
@@ -121,8 +122,8 @@ public class DottoPost extends EntityDate {
         deletedImages.stream().forEach(image -> this.images.remove(image));
     }
 
-    private List<Image> convertImageFilesToImages(List<MultipartFile> imageFiles){
-        return imageFiles.stream().map(imageFile -> new Image(imageFile.getOriginalFilename())).collect(toList());
+    private List<Image> convertImageFilesToImages(List<String> imageFiles){
+        return IntStream.range(0, imageFiles.size()).mapToObj(i -> new Image(imageFiles.get(i))).collect(toList());
     }
 
     private List<Image> convertImageIdsToImages(List<Long> imageIds){
@@ -139,7 +140,7 @@ public class DottoPost extends EntityDate {
     @Getter
     @AllArgsConstructor
     public static class ImageUpdateResult{
-        private List<MultipartFile> addedImageFiles;
+        private List<String> addedImageFiles;
         private List<Image> addedImages;
         private List<Image> deletedImages;
     }

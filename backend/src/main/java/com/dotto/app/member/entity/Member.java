@@ -71,7 +71,13 @@ public class Member extends EntityDate {
     @OneToMany(mappedBy = "follower")
     private List<Follow> follower;
 
-    public Member(String id, String password, String nickname, String gender, String phone, List<Role> roles, String loginType){
+    @Column
+    private String contactType;
+
+    @Column
+    private String contactId;
+
+    public Member(String id, String password, String nickname, String gender, String phone, List<Role> roles, String loginType, String contactType, String contactId){
         this.id = id;
         this.password = password;
         this.nickname = nickname;
@@ -80,6 +86,8 @@ public class Member extends EntityDate {
         this.roles = roles.stream().map(r -> new MemberRole(this,r )).collect(Collectors.toSet());
         this.loginType = loginType;
         this.deletedYn = "N";
+        this.contactType = contactType;
+        this.contactId = contactId;
     }
 
     public void update(String nickname, String intro){
@@ -104,7 +112,7 @@ public class Member extends EntityDate {
     public void deletedProfile(ProfileImage deleteImage){
         deletedProfileImage(deleteImage);
     }
-    private ProfileImageUpdateResult findProfileUpdatedResult(MultipartFile addedFile){
+    private ProfileImageUpdateResult findProfileUpdatedResult(String addedFile){
         ProfileImage addedImages = convertFilesToImage(addedFile);
         return new ProfileImageUpdateResult(addedFile, addedImages);
     }
@@ -125,14 +133,14 @@ public class Member extends EntityDate {
         if(deleteImages.equals(this.profileImage)) this.profileImage = null;
     }
 
-    private ProfileImage convertFilesToImage(MultipartFile file){
-        return new ProfileImage(file.getOriginalFilename());
+    private ProfileImage convertFilesToImage(String file){
+        return new ProfileImage(file);
     }
 
     @Getter
     @AllArgsConstructor
     public static class ProfileImageUpdateResult{
-        private MultipartFile addedImageFile;
+        private String addedImageFile;
         private ProfileImage addedImages;
     }
 

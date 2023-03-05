@@ -11,6 +11,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.toList;
 
@@ -66,7 +67,7 @@ public class Feed {
     }
 
 
-    private FeedImageUpdateResult findFeedImageUpdateResult(List<MultipartFile> addedImageFiles, List<Long> deletedImageIds){
+    private FeedImageUpdateResult findFeedImageUpdateResult(List<String> addedImageFiles, List<Long> deletedImageIds){
         List<FeedImage> addedImages = convertImageFilesToImages(addedImageFiles);
         List<FeedImage> deletedImages = convertImageIdsToImages(deletedImageIds);
         return new FeedImageUpdateResult(addedImageFiles, addedImages, deletedImages);
@@ -84,8 +85,8 @@ public class Feed {
         deletedImages.stream().forEach(image -> this.feedImages.remove(image));
     }
 
-    private List<FeedImage> convertImageFilesToImages(List<MultipartFile> imageFiles){
-        return imageFiles.stream().map(imageFile -> new FeedImage(imageFile.getOriginalFilename())).collect(toList());
+    private List<FeedImage> convertImageFilesToImages(List<String> imageFiles){
+        return IntStream.range(0, imageFiles.size()).mapToObj(i -> new FeedImage(imageFiles.get(i))).collect(toList());
     }
 
     private List<FeedImage> convertImageIdsToImages(List<Long> imageIds){
@@ -102,7 +103,7 @@ public class Feed {
     @Getter
     @AllArgsConstructor
     public static class FeedImageUpdateResult{
-        private List<MultipartFile> addedImageFiles;
+        private List<String> addedImageFiles;
         private List<FeedImage> addedImages;
         private List<FeedImage> deletedImages;
     }
