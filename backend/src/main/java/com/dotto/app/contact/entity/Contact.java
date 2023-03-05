@@ -1,0 +1,41 @@
+package com.dotto.app.contact.entity;
+
+import com.dotto.app.contact.dto.ContactCreateRequest;
+import com.dotto.app.config.constants.ContactType;
+import com.dotto.app.member.entity.Member;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+
+@Entity
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class Contact {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long contactNo;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    private Member member;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, unique = true)
+    private ContactType contactType;
+
+    @Column
+    private String contactMethod;
+
+    public Contact(Member member, ContactCreateRequest req){
+        this.member = member;
+        this.contactType = ContactType.valueOf(req.getType());
+        this.contactMethod = req.getContactMethod();
+    }
+
+
+
+
+
+}
