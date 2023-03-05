@@ -46,5 +46,11 @@ public class SignUpRequest {
     @NotBlank
     private String loginType;
 
+    @ApiModelProperty(value = "연락수단 종류",notes = "연락수단 종류를 입력해주세요", required = true, example = "kakao")
+    @NotBlank
+    private String contactType;
 
+    @ApiModelProperty(value = "연락수단 아이디",notes = "연락수단 아이디를 입력해 주세요", required = true, example = "test1")
+    @NotBlank
+    private String contactId;
 }
