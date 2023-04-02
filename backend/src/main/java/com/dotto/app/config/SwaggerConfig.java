@@ -26,7 +26,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.OAS_30)
                 .apiInfo(apiInfo())
                 .select()
-                    .apis(RequestHandlerSelectors.basePackage("com.dotto.app.controller"))
+                    .apis(RequestHandlerSelectors.basePackage("com.dotto.app"))
                 .paths(PathSelectors.any())
                 .build()
                 .securitySchemes(List.of(apiKey()))
@@ -52,7 +52,7 @@ public class SwaggerConfig {
                 .title("Dotto")
                 .description("Dotto REST APi documentation")
                 .license("cjftksehdqnfwnajr@gmail.com")
-                .licenseUrl("https://github.com/DaHoon06/Dotto")
+                .licenseUrl("https://github.com/jaeeey01/Dotto-Bnd")
                 .version("1.0")
                 .build();
     }
