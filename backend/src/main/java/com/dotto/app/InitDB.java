@@ -1,5 +1,7 @@
 package com.dotto.app;
 
+import com.dotto.app.comment.entity.PostComment;
+import com.dotto.app.comment.repository.PostCommentRepository;
 import com.dotto.app.config.constants.RoleType;
 import com.dotto.app.exception.MemberNotFoundException;
 import com.dotto.app.exception.RoleNotFoundException;
@@ -23,16 +25,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.EventListener;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ResourceUtils;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -56,12 +56,15 @@ public class InitDB {
 
     private final GenreRepository genreRepository;
 
+    private final PostCommentRepository commentRepository;
+
     @EventListener(ApplicationReadyEvent.class)
     @Transactional
     public void initDB() throws IOException {
         initRole();
         initMember();
         initDottoPost();
+        initDottoPostComment();
         initFeed();
         initPolicy();
         initFollow();
@@ -115,13 +118,26 @@ public class InitDB {
 
         );
 
-
         //dummy post
         IntStream.range(0, 24)
                 .forEach(i-> dottoPostRepository.save(
                         new DottoPost(memberRepository.findById("member10"+i).orElseThrow(MemberNotFoundException::new),
                                 "title10"+i,"content10"+i, "10000","9000","Y","레터링", "111", "멋져"+i+", 훈남"+i+", 최고"+i,"10%", List.of(new Image("dummy"+i+".jpg"
                                 )))));
+    };
+
+    private void initDottoPostComment(){
+        String content = "test Content";
+        Member member = memberRepository.findAll().get(0);
+        DottoPost post = dottoPostRepository.findAll().get(0);
+        PostComment c1 = commentRepository.save(new PostComment(content, member, post, null));
+        PostComment c2 = commentRepository.save(new PostComment(content, member, post, c1));
+        PostComment c3 = commentRepository.save(new PostComment(content, member, post, c1));
+        PostComment c4 = commentRepository.save(new PostComment(content, member, post, c2));
+        PostComment c5 = commentRepository.save(new PostComment(content, member, post, c3));
+        PostComment c6 = commentRepository.save(new PostComment(content, member, post, c4));
+        PostComment c7 = commentRepository.save(new PostComment(content, member, post, c3));
+        PostComment c8 = commentRepository.save(new PostComment(content, member, post, null));
     };
 
     private void initFeed(){
@@ -183,13 +199,10 @@ public class InitDB {
 //        }
 
 //          br = new BufferedReader(new InputStreamReader(classPathResource.getInputStream())).readLine();
-
         //로컬용
         File resource = ResourceUtils.getFile("classpath:"+fileName.replaceFirst("/",""));
         br = new BufferedReader(new FileReader(resource)).readLine();
-
         return br;
-//test
     }
 
 }
