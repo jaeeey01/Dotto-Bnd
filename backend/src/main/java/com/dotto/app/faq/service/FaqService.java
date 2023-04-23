@@ -30,8 +30,12 @@ public class FaqService {
         return findFaq.getFaqNo();
     }
     //FAQ 삭제 delete
-
-
+    @Transactional
+    public boolean delete(Long faqNo){
+        Faq findFaq = faqRepository.findById(faqNo).orElseThrow(FaqNotFoundException::new);
+        findFaq.delete();
+        return true;
+    }
     //FAQ 목록조회 get
 
     //FAQ 검색 get

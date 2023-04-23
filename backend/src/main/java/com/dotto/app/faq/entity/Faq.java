@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 @Entity
 @Getter
@@ -29,7 +30,7 @@ public class Faq extends EntityDate {
 
     private char deletedYn;
 
-    private Timestamp deletedAt;
+    private String deletedAt;
 
     public Faq(String qContent, String aContent, String category){
         this.qContent = qContent;
@@ -41,7 +42,8 @@ public class Faq extends EntityDate {
 
     public void delete(){
         Timestamp ts = new Timestamp(System.currentTimeMillis());
+        String deleteTime = new SimpleDateFormat("yyyy-MM-dd HH:dd:ss").format(ts);
         this.deletedYn = 'Y';
-        this.deletedAt = ts;
+        this.deletedAt = deleteTime;
     }
 }

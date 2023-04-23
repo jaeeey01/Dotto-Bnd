@@ -37,6 +37,12 @@ public class FaqController {
         return Response.success(faqService.update(faqNo, req));
     }
     //FAQ 삭제 delete
+    @ApiOperation(value = "FAQ 삭제", notes = "FAQ를 삭제한다")
+    @DeleteMapping("/faq/{faqNo}")
+    @ResponseStatus(HttpStatus.OK)
+    public Response delete(@PathVariable(value = "faqNo")Long faqNo){
+        return Response.success(faqService.delete(faqNo));
+    }
 
 
     //FAQ 목록조회 get
