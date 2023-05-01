@@ -46,7 +46,26 @@ public class FaqController {
 
 
     //FAQ 목록조회 get
+    @ApiOperation(value ="FAQ 전체 목록조회", notes = "FAQ 전체 목록 조회를 한다")
+    @GetMapping("/faq")
+    @ResponseStatus(HttpStatus.OK)
+    public Response readAll(){
+        return Response.success(faqService.readAll());
+    }
+
+    @ApiOperation(value = "FAQ 카테고리별 목록조회",notes = "FAQ에 카테고리별 목록을 조회한다")
+    @GetMapping("/faq/{category}")
+    @ResponseStatus(HttpStatus.OK)
+    public Response readAllCategory(@PathVariable(value = "category") String category){
+        return Response.success(faqService.readAllCategory(category));
+    }
 
     //FAQ 검색 get
+    @ApiOperation(value = "FAQ 검색 조회 ", notes = "FAQ 검색 조회를 한다")
+    @GetMapping("/faq/search/{search}")
+    @ResponseStatus(HttpStatus.OK)
+    public Response search(@PathVariable(value = "search") String search){
+        return Response.success(faqService.search(search));
+    }
 
 }
